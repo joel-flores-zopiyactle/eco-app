@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $newCategory = Categorys::create([
             'name' => $request['name'],
-            'email' => $request['description'],
+            'description' => $request['description'],
         ]);
 
 

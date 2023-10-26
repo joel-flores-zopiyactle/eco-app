@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class FormRegister extends Component
 {
+
+    public $categorys;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($categorys)
     {
-        //
+        $this->categorys = $categorys;
     }
 
     /**

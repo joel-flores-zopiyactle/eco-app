@@ -13,10 +13,10 @@
     <div class="mb-3">
         <label for="category" class="form-label">Categoria</label>
         <select class="form-select" aria-label="Default select category">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option selected>Seleccione una categoria</option>
+            @foreach ($categorys as $category)
+                <option value="{{$category->id}}">{{ $category->name }}</option>
+            @endforeach
         </select>
     </div>
 
