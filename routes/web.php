@@ -23,3 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('register-category');
+
+
+/* Documents */
+Route::post('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'store'])->name('register-document');

@@ -1,18 +1,21 @@
-<form>
+<form action="{{ route('register-document') }}" method="POST">
+    @csrf
+
+    {{ $errors}}
     <div class="mb-3">
         <label for="title" class="form-label">Titulo del documento</label>
-        <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
-        <div id="titleHelp" class="form-text">Ingrese el titulo de tu documento</div>
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="titleHelp" name="title">
+        <div id="titleHelp" class="form-text @error('title') is-invalid @enderror">Ingrese el titulo de tu documento</div>
     </div>
 
     <div class="mb-3">
         <label for="description" class="form-label">Resumen</label>
-        <textarea class="form-control" id="decsription" rows="3"></textarea>
+        <textarea class="form-control" id="decsription" rows="3" name="description"></textarea>
     </div>
 
     <div class="mb-3">
         <label for="category" class="form-label">Categoria</label>
-        <select class="form-select" aria-label="Default select category">
+        <select class="form-select" aria-label="Default select category" name="category_id">
             <option selected>Seleccione una categoria</option>
             @foreach ($categorys as $category)
                 <option value="{{$category->id}}">{{ $category->name }}</option>

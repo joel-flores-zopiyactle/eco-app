@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Documents extends Model
 {
@@ -11,8 +13,12 @@ class Documents extends Model
 
     protected $fillable = [
         'title',
-        'type',
         'category_id',
-        'descripción',
+        'description',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Categorys::class);
+    }
 }

@@ -43,9 +43,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $category = Categorys::find($id);
+        if(!$category) {
+            return 'No ha resultados de la categoria con ID: #' + strval($id);
+        }
+        return $category;
     }
 
     /**
@@ -53,7 +57,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**

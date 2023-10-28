@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Categorys extends Model
 {
@@ -13,4 +14,11 @@ class Categorys extends Model
         'name',
         'description',
     ];
+
+
+
+    public function document(): HasMany
+    {
+        return $this->hasMany(Categorys::class);
+    }
 }
