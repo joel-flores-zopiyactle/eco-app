@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->char('title', 255);
             $table->enum('type', ['image','doc','pdf', 'audio', 'video']);
-
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categorys');
 
