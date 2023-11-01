@@ -49,6 +49,27 @@ class CoverDocumentController extends Controller
         return $cover;
     }
 
+    public function showByDocument(int $documentId)
+    {
+        $cover = $this->findCoverByDocumentId($documentId);
+        echo($cover);
+        $rutaImagen = public_path($cover->url); // Reemplaza con la ruta de tu imagen
+        return response()->file($rutaImagen);
+    }
+
+    public function findCoverByDocumentId(int $documentId)
+    {
+
+        $cover = CoverDocument::where('document_id', $documentId)->get();
+        if(!$cover) {
+            return 'Cover not found';
+        }
+
+        return $cover[0];
+
+    }
+
+
     /**
      * Update the specified resource in storage.
      */

@@ -32,5 +32,10 @@ Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store
 Route::get('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'index'])->name('documents');
 Route::get('/documents/register', [App\Http\Controllers\Documents\DocumentsController::class, 'create'])->name('create-document');
 Route::post('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'store'])->name('register-document');
+Route::get('/documents/{id}/edit/', [App\Http\Controllers\Documents\DocumentsController::class, 'edit'])->name('edit-document');
 Route::delete('/documents/{id}', [App\Http\Controllers\Documents\DocumentsController::class, 'destroy'])->name('delete-document');
+Route::post('/documents/search', [App\Http\Controllers\Documents\DocumentsController::class, 'search'])->name('search-documents');
+
+/* Covers */
+Route::get('{id}/cover', [App\Http\Controllers\Documents\CoverDocumentController::class, 'showByDocument'])->name('show-cover');
 

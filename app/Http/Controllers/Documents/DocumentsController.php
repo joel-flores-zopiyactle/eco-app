@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Categorys;
+use League\CommonMark\Node\Block\Document;
 
 class DocumentsController extends Controller
 {
@@ -18,7 +19,7 @@ class DocumentsController extends Controller
     public function index()
     {
 
-        $documents = Documents::paginate(10);
+        $documents = Documents::orderByDesc('id')->paginate(10);
 
         return view('documents.index', [
             'documents' => $documents
@@ -75,12 +76,25 @@ class DocumentsController extends Controller
         return $doc;
     }
 
+
+    public function search(Request $document) {
+        $documents = Documents::where('title', 'LIKE', '%' . $document->keywords . '%')->paginate(10);
+        return view('documents.index', [
+            'documents' => $documents
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $document = $this->show($id);
+        $categorys = Categorys::all();
+        return view('documents.edit', [
+            'document' => $document,
+            'categorys' => $categorys
+        ]);
     }
 
     /**
@@ -100,10 +114,10 @@ class DocumentsController extends Controller
 
         if ($doc) {
             $doc->delete();
-            return redirect()->route('documents.index')->with('success', 'Registro eliminado exitosamente');
+            return redirect()->route('documents')->with('success', 'Registro eliminado exitosamente');
         }
 
-        return redirect()->route('documents.index')->with('error', 'No se pudo encontrar el registro');
+        return redirect()->route('documents')->with('error', 'No se pudo encontrar el registro');
     }
 
 

@@ -27,4 +27,5 @@ class Documents extends Model
     {
         return $this->hasMany(CoverDocument::class);
     }
+
 }

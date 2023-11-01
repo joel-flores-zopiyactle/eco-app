@@ -1,13 +1,14 @@
-<nav class="nav flex-column">
-    <a class="nav-link active d-flex align-items-center" aria-current="page" href="{{route('documents')}}">
-        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
-            <path d="M 28.90625 1.96875 C 28.863281 1.976563 28.820313 1.988281 28.78125 2 L 11.5 2 C 9.585938 2 8 3.558594 8 5.46875 L 8 43.90625 C 8 46.160156 9.867188 48 12.125 48 L 37.875 48 C 40.132813 48 42 46.160156 42 43.90625 L 42 15.1875 C 42.027344 15.054688 42.027344 14.914063 42 14.78125 L 42 14.5 C 42.007813 14.234375 41.90625 13.972656 41.71875 13.78125 L 30.21875 2.28125 C 30.027344 2.09375 29.765625 1.992188 29.5 2 L 29.1875 2 C 29.097656 1.976563 29 1.964844 28.90625 1.96875 Z M 11.5 4 L 28 4 L 28 12.34375 C 28 14.355469 29.644531 16 31.65625 16 L 40 16 L 40 43.90625 C 40 45.074219 39.054688 46 37.875 46 L 12.125 46 C 10.945313 46 10 45.074219 10 43.90625 L 10 5.46875 C 10 4.644531 10.660156 4 11.5 4 Z M 30 4.9375 L 39.0625 14 L 31.65625 14 C 30.722656 14 30 13.277344 30 12.34375 Z M 17 24 L 17 26 L 33 26 L 33 24 Z M 17 28 L 17 30 L 33 30 L 33 28 Z M 17 32 L 17 34 L 33 34 L 33 32 Z M 17 36 L 17 38 L 26 38 L 26 36 Z"></path>
-        </svg>
+<nav class="nav flex-column menu-admin">
+    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('documents')}}">
+        <span class="material-symbols-outlined">
+            description
+        </span>
         Documentos
     </a>
     <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('categorys')}}">
-        <img class="icon-svg"
-        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADBklEQVR4nO2Zy0tVQRzHP1ES1TXoQdKiTYgg9LBViyQIcWWPRa1cBAW1LSOhl9C/IFmkUovcZG2yBxWYZhq1qFWvC7VpEWSUEfaQrE6MfC8Mch8zc87FW5wvDMy58/v+Zn53Zr4z53cgRYo5QzPQC2SBryqvgB6giX8AdcAIEJUow0BtgP+HDr6jAmXUtZOtwIRI74ETwEZgiUoDcFJtxuYT0OgZSBSzOM1ELojLQKaIbTXQbwXjMzPOAwrljVhBzHOwNzZXxBkqx4BCeM3Wcio2E/lmZlzcpkoIpFdGZk/44pS43UkOKJSXldEG/NEgrpHmOQ9kUkY+yyqHjLiTSQ5oLgJZKu6X/2VpvUxyQKG8HhmZw84XHeKer4RAmiz5NZLqs6w+iLstyQHF4Q3LsN/jQLwqzmA5BhTKq9V1I9KJXV1iJnJBfATWlmNAcXiNVjDjOuw2Sc0yqndYy8kEsaXSLo32zAw5OBz0nIkcRmME8SCgvxkB6JasTqq8kDq5buwUKVKkSJGiXLjucRAOJNFhlZJqY6ongbqAU70ubqdHLGdtycRBu/xdcrDtk+3ROB0uty6RpnwGVhIfY/K328F2j2+6NB/OWhfE26p3xXEIrAJ+AVOOL3EZ4AfwG6gJ6bAemFan6/T8U8/rCcd+/SE3PTi3xNkX0uEdkc9Yv3Xpt3uEY0A+DnhwDopzzbezHSJOzNoTy/QyZdq2+zoFFgHftExWe/BqxPkOLHYlVVnpoUN52g+r7TWwED/sEvcR/ngs7k5XQpsI2QLnxgLgeaAcXxTvGP44Lu4FF+MV1jeSYkunpcDSK4V34rXij1ZxjY+SyG3mux5iYCTad6NP61B0TTu1i+N0XbHl1kVeQ+R4PnBaG9cM6oYExCXt9AfodLkm5ZPbUgiV4xbrxvAW2JzHxqSe3lgJcpdbwMx+CFnzceR4jdTLcKdmKeReSa1pe+qTdnqWQOLMKJkvjHyfs3z0WZfESG1eEn8/gUBM7jgUrdY3mkj1EGWrCNQDT1RMPUWKFMTHX8XWlEYLpuodAAAAAElFTkSuQmCC">
+        <span class="material-symbols-outlined">
+            category
+        </span>
         Categorías
     </a>
 </nav>

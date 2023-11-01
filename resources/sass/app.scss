@@ -22,3 +22,51 @@ body {
     height: 24px;
     object-fit: contain;
 }
+
+
+.menu-admin {
+    .nav-link {
+        margin-bottom: 5px;
+        transition: background ease-in-out .3s;
+        color: #000000;
+        font-size: 14px;
+        border-radius: 20px;
+        border: 1px solid #f2f2f2;
+
+        span {
+            margin-right: 6px;
+        }
+
+        &:hover {
+            background: rgb(224, 250, 251);
+            border: 1px solid #dfdfdf;
+            font-weight: 700;
+        }
+    }
+}
+
+
+.document-page {
+    .btn-document {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        border-radius: 30px !important;
+        span {
+            padding: 1px 8px !important;
+            font-size: 18px;
+        }
+    }
+}
+
+
+.edit-document-page {
+    .cover-document{
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+    }
+
+}
