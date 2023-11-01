@@ -22,8 +22,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/* Categorys */
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('categorys');
+Route::get('/category/register', [App\Http\Controllers\CategoryController::class, 'create'])->name('create-category');
 Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('register-category');
 
 
 /* Documents */
+Route::get('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'index'])->name('documents');
+Route::get('/documents/register', [App\Http\Controllers\Documents\DocumentsController::class, 'create'])->name('create-document');
 Route::post('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'store'])->name('register-document');
+Route::delete('/documents/{id}', [App\Http\Controllers\Documents\DocumentsController::class, 'destroy'])->name('delete-document');
+

@@ -12,15 +12,18 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Categorys::orderByDesc('id')->paginate(15);
+        $successMessage = session('success', ''); // Recupera el mensaje de éxito -> ¿Si existe?
+        return view('categorys.index', ['categorys' => $category])
+        ->with('successMessage', $successMessage);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(array $category)
+    public function create()
     {
-
+        return view('categorys.create');
     }
 
     /**
@@ -28,16 +31,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $newCategory = Categorys::create([
+        Categorys::create([
             'name' => $request['name'],
             'description' => $request['description'],
         ]);
 
-
-        echo $newCategory;
-
-
-        return $newCategory;
+        return redirect('/category')
+        ->with('success', 'Categoría registrado exitosamente.');
     }
 
     /**

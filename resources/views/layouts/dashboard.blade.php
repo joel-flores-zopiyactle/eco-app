@@ -13,10 +13,11 @@
         </div>
 
         <div class="col-10">
-            <h2>Hola al sistema de archivos</h2>
+            @yield('panel')
         </div>
     </div>
 
 
 </div>
 @endsection
+

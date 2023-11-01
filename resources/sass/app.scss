@@ -1,8 +1,24 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.bunny.net/css?family=Inter');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.icon-svg {
+    width: 25px;
+    margin-right: 10px;
+}
+
+
+.btn-action {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}

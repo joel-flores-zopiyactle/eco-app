@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Documents;
 
+use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\CategoryController;
+use App\Models\Categorys;
 
 class DocumentsController extends Controller
 {
@@ -14,7 +17,12 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        //
+
+        $documents = Documents::paginate(10);
+
+        return view('documents.index', [
+            'documents' => $documents
+        ]);
     }
 
     /**
@@ -22,7 +30,8 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        //
+        $categorys = Categorys::all();
+        return view('documents.create', ['categorys' => $categorys]);
     }
 
     /**
@@ -33,26 +42,37 @@ class DocumentsController extends Controller
         $document->validate([
             'title' => 'required',
             'description' => 'required',
+            'file' => 'required|file|mimes:pdf,doc,docx,jpg,png,jpeg' // Validación del tipo de archivo
         ]);
 
         $newCategory = new CategoryController();
         $category = $newCategory->show($document['category_id']);
 
-        echo($document->title);
         $doc = new Documents();
-        $doc->title = $document->title ?? 'Hola';
+        $doc->title = $document->title ?? 'N/A';
         $doc->description = $document->description;
-        $doc->type = 'pdf';
+        $doc->isPublished = $document->ispublished ? true : false;
         $doc->category()->associate($category);
         $doc->save();
+
+        $cover = new CoverDocumentController();
+        $file = $cover->store($document->file ,$doc);
+        $doc->type = $this->varifyFileType($file->type);
+        return $doc->save();
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $doc = Documents::find($id);
+        if(!$doc) {
+            return 'Documento no encontrado en nuestra BD';
+        }
+
+        return $doc;
     }
 
     /**
@@ -74,8 +94,41 @@ class DocumentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $doc = $this->show($id);
+
+        if ($doc) {
+            $doc->delete();
+            return redirect()->route('documents.index')->with('success', 'Registro eliminado exitosamente');
+        }
+
+        return redirect()->route('documents.index')->with('error', 'No se pudo encontrar el registro');
+    }
+
+
+    /* Helper */
+    public function varifyFileType(string $extension)
+    {
+        if (FileHelper::isImage($extension)) {
+            return "image";
+        }
+        if (FileHelper::isPDF($extension)) {
+            return "pdf";
+        }
+
+        if (FileHelper::isVideo($extension)) {
+            return "video";
+        }
+
+        if (FileHelper::isAudio($extension)) {
+            return "audio";
+        }
+
+        if (FileHelper::isDocumentWord($extension)) {
+            return "doc";
+        }
+
+        return "Tipo de archivo no válido.";
     }
 }
