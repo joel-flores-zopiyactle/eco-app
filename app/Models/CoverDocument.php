@@ -18,6 +18,4 @@ class CoverDocument extends Model
     {
         return $this->belongsTo(Documents::class);
     }
-
-
 }

@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+
+
 @section('panel')
 
     @if ($successMessage)

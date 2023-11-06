@@ -83,6 +83,16 @@ class CoverDocumentController extends Controller
      */
     public function destroy(CoverDocument $coverDocument)
     {
-        //
+        // Convierte la URL en una ruta de archivo válida
+
+        $fileName = pathinfo($coverDocument->url, PATHINFO_BASENAME);
+
+        if (Storage::disk('public')->exists($fileName)) {
+            Storage::disk('public')->delete($fileName);
+            $coverDocument->delete();
+
+        }
+
+       return redirect("/documents/$coverDocument->document_id/edit")->with('error', 'Fallo al actualizar el documento.');
     }
 }

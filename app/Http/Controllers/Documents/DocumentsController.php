@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\CategoryController;
 use App\Models\Categorys;
+use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Node\Block\Document;
 
 class DocumentsController extends Controller
@@ -89,20 +90,44 @@ class DocumentsController extends Controller
      */
     public function edit(int $id)
     {
+        $successMessage = session('success', ''); // Recupera el mensaje de éxito -> ¿Si existe?
         $document = $this->show($id);
         $categorys = Categorys::all();
         return view('documents.edit', [
             'document' => $document,
             'categorys' => $categorys
-        ]);
+        ])->with('success', $successMessage);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $document = $this->show($id);
+
+        $newCategory = new CategoryController();
+        $category = $newCategory->show($request->category_id);
+
+        $document->title = $request->title ?? 'N/A';
+        $document->description = $request->description;
+        $document->isPublished = $request->ispublished ? true : false;
+        $document->category()->associate($category);
+        if($request->newFile) {
+            $cover = new CoverDocumentController();
+           if($document->image) $cover->destroy($document->image);
+            // Se registra nueva portada
+            $file = $cover->store($request->newFile ,$document);
+            $document->type = $this->varifyFileType($file->type);
+        }
+
+        $url = "/documents/$document->id/edit/";
+        if($document->save()) {
+            return redirect($url)->with('success', 'El producto se ha actualizado correctamente.');
+        }
+
+        return redirect($url)->with('error', 'Fallo al actualizar el documento.');
+
     }
 
     /**

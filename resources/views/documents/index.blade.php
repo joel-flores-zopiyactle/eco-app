@@ -12,7 +12,7 @@
 
         {{-- Search --}}
         <section class="w-50">
-            <form action="{{ route('search-documents')}}" class="d-flex mb-3" role="search" method="POST">
+            <form action="{{ route('search-documents')}}" class="d-flex mb-3" role="search" method="POST" autocomplete="off">
                 @csrf
                 <input class="form-control me-2" type="search" name="keywords" placeholder="Buscar por titulo, id, categoría..." aria-label="Search">
                 <button class="btn btn-outline-secondary text-dark d-flex" type="submit">
@@ -47,10 +47,11 @@
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
 
-                                    <form action="{{ route('delete-document', ["id" => $document->id])}}" method="POST">
+                                    <form action="{{ route('delete-document', ["id" => $document->id])}}" method="POST" id="delete-document-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
+                                        id="delete-document"
                                         class="btn btn-outline-danger btn-document">
                                             <span class="material-symbols-outlined text-sm">
                                                 delete

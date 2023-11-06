@@ -1,4 +1,4 @@
-<form class="row" action="{{ route('register-document') }}" method="POST" enctype="multipart/form-data">
+<form class="row" action="{{ route('register-document') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
     @csrf
     <div class="mb-3 col-12">
         <label for="title" class="form-label">Titulo del documento</label>

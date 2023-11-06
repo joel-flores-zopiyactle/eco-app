@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[App\Http\Controllers\HomeUserController::class, 'index'])->name('welcome');
+Route::post('/search', [App\Http\Controllers\HomeUserController::class, 'search'])->name('search-documents-index');
 
 Auth::routes();
 
+// Home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 /* Categorys */
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('categorys');
@@ -35,7 +36,11 @@ Route::post('/documents', [App\Http\Controllers\Documents\DocumentsController::c
 Route::get('/documents/{id}/edit/', [App\Http\Controllers\Documents\DocumentsController::class, 'edit'])->name('edit-document');
 Route::delete('/documents/{id}', [App\Http\Controllers\Documents\DocumentsController::class, 'destroy'])->name('delete-document');
 Route::post('/documents/search', [App\Http\Controllers\Documents\DocumentsController::class, 'search'])->name('search-documents');
+Route::put('/documents/{id}/update', [App\Http\Controllers\Documents\DocumentsController::class, 'update'])->name('update-document');
 
 /* Covers */
 Route::get('{id}/cover', [App\Http\Controllers\Documents\CoverDocumentController::class, 'showByDocument'])->name('show-cover');
+
+
+
 

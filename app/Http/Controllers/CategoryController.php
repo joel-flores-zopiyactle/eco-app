@@ -36,6 +36,7 @@ class CategoryController extends Controller
             'description' => $request['description'],
         ]);
 
+        notify()->success('Categoría registrado exitosamente.');
         return redirect('/category')
         ->with('success', 'Categoría registrado exitosamente.');
     }

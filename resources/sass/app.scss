@@ -7,6 +7,8 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+@import 'sweetalert2/src/sweetalert2.scss';
+
 body {
     font-family: "Inter", sans-serif;
 }
@@ -38,8 +40,8 @@ body {
         }
 
         &:hover {
-            background: rgb(224, 250, 251);
-            border: 1px solid #dfdfdf;
+            background: rgb(238, 249, 249);
+            border: 1px solid #8ccacb;
             font-weight: 700;
         }
     }
@@ -70,3 +72,72 @@ body {
     }
 
 }
+
+
+
+.banner-home {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    background-position: 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    section {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .6);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            color: #FFF;
+        }
+    }
+}
+
+
+.books-container {
+    .grid-books {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(
+            3,
+            minmax(300px, 1fr),
+        ) ;
+        .card-book {
+            cursor: pointer;
+            border-radius: 9px;
+
+            transition: all ease-in-out .3s;
+            &:hover {
+                transform: scale(1.02);
+                box-shadow:  5px 5px 10px #abb0b4,
+                -5px -5px 10px #e1f6ff !important;
+            }
+
+            img {
+                width: 100%;
+                height: 180px;
+                background-position: center;
+                background-size: cover;
+                background-clip: inherit;
+            }
+
+            .footer {
+                display: flex;
+                justify-content: flex-start;
+                a {
+                    color: #000000;
+                }
+            }
+        }
+
+    }
+}
+
