@@ -12,10 +12,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Categorys::orderByDesc('id')->paginate(15);
+        $categories = Categorys::orderByDesc('id')->paginate(15);
         $successMessage = session('success', ''); // Recupera el mensaje de éxito -> ¿Si existe?
-        return view('categorys.index', ['categorys' => $category])
-        ->with('successMessage', $successMessage);
+        return view('categories.index', ['categories' => $categories])
+        ->with('success', $successMessage);
     }
 
     /**
@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categorys.create');
+        return view('categories.create');
     }
 
     /**
@@ -36,7 +36,6 @@ class CategoryController extends Controller
             'description' => $request['description'],
         ]);
 
-        notify()->success('Categoría registrado exitosamente.');
         return redirect('/category')
         ->with('success', 'Categoría registrado exitosamente.');
     }
@@ -56,17 +55,25 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-
+        $category = $this->show($id);
+        return view('categories.edit', ["category" => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $category = $this->show($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+        if($category->save()) {
+            return back()->with('success', 'Categoría actualizada exitosamente.');
+        }
+
+        return back()->with('error', 'Fallo al actualizar la categoria.');
     }
 
     /**
@@ -74,6 +81,15 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = $this->show($id);
+
+        if ($category) {
+            $category->delete();
+            return redirect('/category')
+            ->with('success', 'Categoría eliminado exitosamente.');
+        }
+
+        return redirect('/category')
+        ->with('error', 'Fallo al eliminar la categoria.');
     }
 }

@@ -8,9 +8,10 @@ use App\Models\Documents;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\File\FileController;
 use App\Models\Categorys;
-use Illuminate\Support\Facades\Storage;
-use League\CommonMark\Node\Block\Document;
+use App\Models\FilesDocument;
+
 
 class DocumentsController extends Controller
 {
@@ -44,7 +45,8 @@ class DocumentsController extends Controller
         $document->validate([
             'title' => 'required',
             'description' => 'required',
-            'file' => 'required|file|mimes:pdf,doc,docx,jpg,png,jpeg' // Validación del tipo de archivo
+            'file' => 'required|file|mimes:jpg,png,jpeg', // Validación del tipo de archivo
+            'fileDocument' => 'required|file|mimes:pdf,doc,docx,jpg,png,jpeg' // Validación del tipo de archivo
         ]);
 
         $newCategory = new CategoryController();
@@ -58,7 +60,11 @@ class DocumentsController extends Controller
         $doc->save();
 
         $cover = new CoverDocumentController();
-        $file = $cover->store($document->file ,$doc);
+        $cover->store($document->file ,$doc);
+
+        $fileDocument = new FileController();
+        $file = $fileDocument->store($document->fileDocument ,$doc);
+
         $doc->type = $this->varifyFileType($file->type);
         return $doc->save();
 

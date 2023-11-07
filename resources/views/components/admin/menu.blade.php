@@ -5,7 +5,7 @@
         </span>
         Documentos
     </a>
-    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('categorys')}}">
+    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('categories')}}">
         <span class="material-symbols-outlined">
             category
         </span>

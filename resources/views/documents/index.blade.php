@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('panel')
-    <section class="shadow rounded-2 p-4 document-page">
+    <section class="shadow rounded-2 p-4 document-page page-admin">
 
         <div class="w-100 d-flex justify-content-between align-items-center py-3">
             <h4>Lista de documentos</h4>
@@ -52,14 +52,14 @@
                                         @method('DELETE')
                                         <button type="submit"
                                         id="delete-document"
-                                        class="btn btn-outline-danger btn-document">
+                                        class="btn btn-outline-danger btn-action">
                                             <span class="material-symbols-outlined text-sm">
                                                 delete
                                             </span>
                                         </button>
                                     </form>
 
-                                    <a href="{{ route('edit-document', ['id' => $document->id]) }}" class="btn btn-light ms-3 btn-document">
+                                    <a href="{{ route('edit-document', ['id' => $document->id]) }}" class="btn btn-light ms-3 btn-action">
                                         <span class="material-symbols-outlined">
                                             edit
                                         </span>

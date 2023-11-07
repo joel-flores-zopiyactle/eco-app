@@ -6,8 +6,14 @@
     <section>
         <ul class="list-group list-group-flush" style="cursor: pointer;">
 
+            <li class="list-group-item"><a href="{{route('welcome')}}">Todos</a></li>
+
             @foreach ($categorys as $category)
-            <li class="list-group-item">{{ $category->name }}</li>
+            <li class="list-group-item">
+                <a href="{{ route('filter-serach-category', ['filter' => $category->name]) }}">
+                    {{ $category->name }}
+                </a>
+            </li>
             @endforeach
 
         </ul>

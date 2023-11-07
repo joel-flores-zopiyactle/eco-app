@@ -28,9 +28,9 @@
     </div>
 
     <div class="mb-3 col-6">
-        <label for="file" class="form-label">Archivo</label>
-        <input class="form-control" type="file" id="file" accept=".jpg, .jpeg, .png, .gif, .pdf, .mp3, .mp4, .avi, .mov">
-        <div id="fileHelp" class="form-text">Sube el archivo ligado al documento</div>
+        <label for="fileDocument" class="form-label">Archivo</label>
+        <input class="form-control" type="file" id="fileDocument" name="fileDocument" accept=".jpg, .jpeg, .png, .gif, .pdf, .mp3, .mp4, .avi, .mov">
+        <div id="fileDocument" class="form-text">Sube el archivo ligado al documento</div>
     </div>
 
 

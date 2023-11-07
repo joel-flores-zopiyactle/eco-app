@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[App\Http\Controllers\HomeUserController::class, 'index'])->name('welcome');
 Route::post('/search', [App\Http\Controllers\HomeUserController::class, 'search'])->name('search-documents-index');
+Route::get('/search/filter/{filter}', [App\Http\Controllers\HomeUserController::class, 'filter'])->name('filter-serach-category');
 
 Auth::routes();
 
@@ -24,9 +25,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 /* Categorys */
-Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('categorys');
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
 Route::get('/category/register', [App\Http\Controllers\CategoryController::class, 'create'])->name('create-category');
 Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('register-category');
+Route::get('/category/{id}/edit', [App\Http\Controllers\CategoryController::class, 'edit'])->name('edit-category');
+Route::put('/category/{id}/update', [App\Http\Controllers\CategoryController::class, 'update'])->name('update-category');
+Route::delete('/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('destroy-category');
 
 
 /* Documents */
