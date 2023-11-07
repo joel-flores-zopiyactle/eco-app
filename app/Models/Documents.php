@@ -16,7 +16,9 @@ class Documents extends Model
         'title',
         'category_id',
         'description',
-        'ispublished'
+        'ispublished',
+        'cover',
+        'file'
     ];
 
     public function category(): BelongsTo

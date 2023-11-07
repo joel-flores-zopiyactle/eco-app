@@ -1,5 +1,5 @@
 <nav class="nav flex-column menu-admin">
-    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('documents')}}">
+    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{route('documents', 'all')}}">
         <span class="material-symbols-outlined">
             description
         </span>

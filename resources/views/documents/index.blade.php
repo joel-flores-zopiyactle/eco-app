@@ -1,30 +1,37 @@
 @extends('layouts.dashboard')
 
 @section('panel')
+    <div class="w-100 d-flex justify-content-between align-items-center py-2">
+        <h4><strong>Lista de documentos</strong></h4>
+
+        <a class="btn btn-primary d-flex align-items-center justify-content-center" href="{{ route('create-document')}}">
+            <span class="material-symbols-outlined">
+                add
+            </span>
+            Nuevo documento
+        </a>
+    </div>
+
+    <x-alert></x-alert>
+
     <section class="shadow rounded-2 p-4 document-page page-admin">
 
-        <div class="w-100 d-flex justify-content-between align-items-center py-3">
-            <h4>Lista de documentos</h4>
-
-            <a class="btn btn-primary" href="{{ route('create-document')}}">Nuevo documento</a>
-        </div>
-
-
-        {{-- Search --}}
-        <section class="w-50">
-            <form action="{{ route('search-documents')}}" class="d-flex mb-3" role="search" method="POST" autocomplete="off">
-                @csrf
-                <input class="form-control me-2" type="search" name="keywords" placeholder="Buscar por titulo, id, categoría..." aria-label="Search">
-                <button class="btn btn-outline-secondary text-dark d-flex" type="submit">
-                    <span class="material-symbols-outlined ms-1">
-                        search
-                    </span>
-                    Buscar
-                </button>
-            </form>
-        </section>
-
         @if ($documents->count() > 0)
+
+            {{-- Search --}}
+            <section class="w-50">
+                <form action="{{ route('search-documents')}}" class="d-flex mb-3" role="search" method="POST" autocomplete="off">
+                    @csrf
+                    <input class="form-control me-2" type="search" name="keywords" placeholder="Buscar por titulo, id, categoría..." aria-label="Search">
+                    <button class="btn btn-outline-secondary text-dark d-flex" type="submit">
+                        <span class="material-symbols-outlined ms-1">
+                            search
+                        </span>
+                        Buscar
+                    </button>
+                </form>
+            </section>
+
             <table class="table table-hover">
                 <thead class="table-light">
                     <tr>
@@ -43,15 +50,19 @@
                             <td>{{ $document->title }}</td>
                             <td>{{ $document->description }}</td>
                             <td>{{ $document->type }}</td>
-                            <td> {{ $document->category->name}} </td>
+                            <td>
+                                <div class="badge text-bg-success px-2 py-1 rounded">
+                                    {{ $document->category->name}}
+                                </div>
+                            </td>
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
 
-                                    <form action="{{ route('delete-document', ["id" => $document->id])}}" method="POST" id="delete-document-form">
+                                    <form action="{{ route('delete-document', ["id" => $document->id])}}" method="POST" id="delete-item-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                        id="delete-document"
+                                        id="delete-item"
                                         class="btn btn-outline-danger btn-action">
                                             <span class="material-symbols-outlined text-sm">
                                                 delete
@@ -77,18 +88,17 @@
             </div>
         @else
 
-            <div class="d-flex justify-content-center align-items-center pt-5">
-                <span class="material-symbols-outlined" style="font-size: 4rem;">
-                    insert_page_break
-                </span>
+            <div class="empty-state d-flex justify-content-center align-items-center p-5">
+                <img style="width: 30%" src="{{ asset('assets/svg/files.svg')  }}" alt="Not found files">
             </div>
 
-            <div class="d-flex justify-content-center align-items-center pb-5">
-               <a class="btn btn-light bold" href="{{route('documents')}}">Mostrar todo</a>
-            </div>
-
-            <div class="alert alert-warning text-center">
-                <strong>No hay resulatdos con la busqueda....</strong>
+            <div class="d-flex justify-content-center align-items-center px-5 py-2 text-center">
+                    <h4>
+                        <strong>¡Opps!</strong>
+                        <br>
+                        <br>
+                        <b>Parace que aún no tenemos documentos</b>
+                    </h4>
             </div>
         @endif
 

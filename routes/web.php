@@ -34,13 +34,14 @@ Route::delete('/category/{id}', [App\Http\Controllers\CategoryController::class,
 
 
 /* Documents */
-Route::get('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'index'])->name('documents');
+Route::get('/documents/{show}/list', [App\Http\Controllers\Documents\DocumentsController::class, 'index'])->name('documents');
 Route::get('/documents/register', [App\Http\Controllers\Documents\DocumentsController::class, 'create'])->name('create-document');
 Route::post('/documents', [App\Http\Controllers\Documents\DocumentsController::class, 'store'])->name('register-document');
 Route::get('/documents/{id}/edit/', [App\Http\Controllers\Documents\DocumentsController::class, 'edit'])->name('edit-document');
 Route::delete('/documents/{id}', [App\Http\Controllers\Documents\DocumentsController::class, 'destroy'])->name('delete-document');
 Route::post('/documents/search', [App\Http\Controllers\Documents\DocumentsController::class, 'search'])->name('search-documents');
 Route::put('/documents/{id}/update', [App\Http\Controllers\Documents\DocumentsController::class, 'update'])->name('update-document');
+
 
 /* Covers */
 Route::get('{id}/cover', [App\Http\Controllers\Documents\CoverDocumentController::class, 'showByDocument'])->name('show-cover');

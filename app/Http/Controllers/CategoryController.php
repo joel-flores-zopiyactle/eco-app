@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorys;
+use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,7 @@ class CategoryController extends Controller
     {
         $categories = Categorys::orderByDesc('id')->paginate(15);
         $successMessage = session('success', ''); // Recupera el mensaje de éxito -> ¿Si existe?
-        return view('categories.index', ['categories' => $categories])
+        return view('categories.index', ['categories' => $categories, 'active' => true])
         ->with('success', $successMessage);
     }
 
@@ -31,13 +33,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Categorys::create([
-            'name' => $request['name'],
-            'description' => $request['description'],
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ], [
+            'name.required' => 'El campo titulo es obligatorio.',
+            'name.max' => 'El campo titulo no debe tener más de 255 caracteres.',
+            'description.required' => 'El campo descripción es obligatorio.',
         ]);
 
-        return redirect('/category')
-        ->with('success', 'Categoría registrado exitosamente.');
+        $category = new Categorys();
+
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        if($category->save()) {
+            return back()->with('success', 'Categoría registrada con éxito.');
+        }
+
+        return back()->with('error', 'Fallo al crear la categoría.');
     }
 
     /**
@@ -66,6 +80,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ], [
+            'name.required' => 'El campo titulo es obligatorio.',
+            'name.max' => 'El campo titulo no debe tener más de 255 caracteres.',
+            'description.required' => 'El campo descripción es obligatorio.',
+        ]);
+
         $category = $this->show($id);
         $category->name = $request->name;
         $category->description = $request->description;
@@ -83,13 +106,16 @@ class CategoryController extends Controller
     {
         $category = $this->show($id);
 
-        if ($category) {
-            $category->delete();
-            return redirect('/category')
-            ->with('success', 'Categoría eliminado exitosamente.');
-        }
+        try {
+            if ($category) {
+                $category->delete();
+                return back()
+                ->with('success', 'Categoría eliminado exitosamente.');
+            }
 
-        return redirect('/category')
-        ->with('error', 'Fallo al eliminar la categoria.');
+        } catch (\Throwable $th) {
+            return back()
+            ->with('error', 'Fallo al eliminar la categoria.');
+        }
     }
 }

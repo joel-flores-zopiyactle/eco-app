@@ -1,14 +1,24 @@
-<form action="/category" method="POST">
+
+<x-alert></x-alert>
+
+<form action="/category" method="POST" autocomplete="off">
     @csrf
     <div class="mb-3">
         <label for="name" class="form-label">Titulo</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="titleHelp">
+        <input type="text" id="name" name="name" aria-describedby="titleHelp"
+        class="form-control @error('name') is-invalid @enderror">
+        @error('name')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
         <div id="titleHelp" class="form-text">Ingrese el titulo de la categoria</div>
     </div>
 
     <div class="mb-3">
         <label for="description" class="form-label">Descripcón</label>
-        <textarea class="form-control" id="decsription" name="description" rows="3"></textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3"></textarea>
+        @error('description')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
     </div>
 
 

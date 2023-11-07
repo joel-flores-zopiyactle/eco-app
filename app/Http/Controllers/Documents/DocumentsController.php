@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\File\FileController;
 use App\Models\Categorys;
-use App\Models\FilesDocument;
 
 
 class DocumentsController extends Controller
@@ -18,10 +17,18 @@ class DocumentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $filter)
     {
 
-        $documents = Documents::orderByDesc('id')->paginate(10);
+        $documents = [];
+        if($filter === 'all') {
+            $documents = Documents::orderByDesc('id')->paginate(10);
+        }
+
+        if($filter !== 'all') {
+            $category = Categorys::where('name', $filter)->first();
+            $documents = Documents::where('category_id', $category->id)->orderByDesc('id')->paginate(10);
+        }
 
         return view('documents.index', [
             'documents' => $documents
@@ -42,15 +49,28 @@ class DocumentsController extends Controller
      */
     public function store(Request $document)
     {
+        $messages = [
+            'title.required' => 'El campo título es obligatorio.',
+            'description.required' => 'El campo descripción es obligatorio.',
+            'category_id.required' => 'El campo categoría es obligatorio.',
+            'cover.required' => 'El campo portada es obligatorio.',
+            'cover.file' => 'El campo portada debe ser un archivo.',
+            'cover.mimes' => 'El campo portada debe ser un archivo de tipo jpg, png, o jpeg.',
+            'file.required' => 'El campo archivo es obligatorio.',
+            'file.file' => 'El campo archivo debe ser un archivo.',
+            'file.mimes' => 'El campo archivo debe ser un archivo de tipo pdf, doc, docx, jpg, png o jpeg.',
+        ];
+
         $document->validate([
             'title' => 'required',
             'description' => 'required',
-            'file' => 'required|file|mimes:jpg,png,jpeg', // Validación del tipo de archivo
-            'fileDocument' => 'required|file|mimes:pdf,doc,docx,jpg,png,jpeg' // Validación del tipo de archivo
-        ]);
+            'category_id' => 'required',
+            'cover' => 'required|file|mimes:jpg,png,jpeg', // Validación del tipo de archivo
+            'file' => 'required|file|mimes:pdf,doc,docx,jpg,png,jpeg' // Validación del tipo de archivo
+        ], $messages);
 
         $newCategory = new CategoryController();
-        $category = $newCategory->show($document['category_id']);
+        $category = $newCategory->show($document->category_id);
 
         $doc = new Documents();
         $doc->title = $document->title ?? 'N/A';
@@ -60,13 +80,18 @@ class DocumentsController extends Controller
         $doc->save();
 
         $cover = new CoverDocumentController();
-        $cover->store($document->file ,$doc);
+        $cover->store($document->cover ,$doc);
 
         $fileDocument = new FileController();
-        $file = $fileDocument->store($document->fileDocument ,$doc);
+        $fileDocument = $fileDocument->store($document->file ,$doc);
 
-        $doc->type = $this->varifyFileType($file->type);
-        return $doc->save();
+        $doc->type = $this->varifyFileType($fileDocument->type);
+
+        if($category->save()) {
+            return back()->with('success', 'Documento registrado con éxito.');
+        }
+
+        return back()->with('error', 'Fallo al crear el documento.');
 
     }
 
@@ -145,10 +170,10 @@ class DocumentsController extends Controller
 
         if ($doc) {
             $doc->delete();
-            return redirect()->route('documents')->with('success', 'Registro eliminado exitosamente');
+            return back()->with('success', 'Registro eliminado exitosamente');
         }
 
-        return redirect()->route('documents')->with('error', 'No se pudo encontrar el registro');
+        return back()->with('error', 'No se pudo encontrar el registro');
     }
 
 

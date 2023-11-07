@@ -42,4 +42,20 @@ class FileController extends Controller
         if(!$file) return "Archivo no encotrado";
         return $file;
     }
+
+
+    public function destroy(FilesDocument $fileDocument)
+    {
+        // Convierte la URL en una ruta de archivo válida
+
+        $fileName = pathinfo($fileDocument->url, PATHINFO_BASENAME);
+
+        if (Storage::disk('public')->exists($fileName)) {
+            Storage::disk('public')->delete($fileName);
+           return  $fileDocument->delete();
+
+        }
+
+       return false;
+    }
 }

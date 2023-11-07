@@ -3,45 +3,62 @@
     <div class="mb-3 col-12">
         <label for="title" class="form-label">Titulo del documento</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" aria-describedby="titleHelp" name="title">
+        @error('title')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
+
         <div id="titleHelp" class="form-text @error('title') is-invalid @enderror">Ingrese el titulo de tu documento</div>
     </div>
 
     <div class="mb-3 col-12">
         <label for="description" class="form-label">Resumen</label>
-        <textarea class="form-control" id="decsription" rows="3" name="description"></textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description"></textarea>
+        @error('description')
+         <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="mb-3 col-12">
         <label for="category" class="form-label">Categoria</label>
-        <select class="form-select" aria-label="Default select category" name="category_id">
+        <select class="form-select @error('category_id') is-invalid @enderror" aria-label="Default select category" name="category_id">
             <option selected>Seleccione una categoria</option>
             @foreach ($categorys as $category)
                 <option value="{{$category->id}}">{{ $category->name }}</option>
             @endforeach
         </select>
+
+        @error('category_id')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
     </div>
 
     <div class="mb-3 col-6">
-        <label for="file" class="form-label">Portada</label>
-        <input class="form-control" type="file" id="file" name="file" accept=".jpg, .jpeg, .png, .gif">
+        <label for="cover" class="form-label">Portada</label>
+        <input class="form-control @error('cover') is-invalid @enderror" type="file" id="cover" name="cover" accept=".jpg, .jpeg, .png, .gif">
+        @error('cover')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
         <div id="fileHelp" class="form-text">Sube un imagen para la vista de tu documento</div>
     </div>
 
     <div class="mb-3 col-6">
-        <label for="fileDocument" class="form-label">Archivo</label>
-        <input class="form-control" type="file" id="fileDocument" name="fileDocument" accept=".jpg, .jpeg, .png, .gif, .pdf, .mp3, .mp4, .avi, .mov">
+        <label for="file" class="form-label">Archivo</label>
+        <input class="form-control @error('file') is-invalid @enderror" type="file" id="file" name="file" accept=".jpg, .jpeg, .png, .gif, .pdf, .mp3, .mp4, .avi, .mov">
+        @error('file')
+            <div class="alert alert-danger mt-1">{{ $message }}</div>
+        @enderror
         <div id="fileDocument" class="form-text">Sube el archivo ligado al documento</div>
     </div>
 
 
-    <div class="mb-3 form-check col-span-2 col-6">
-       <section class="pl-5">
+    <div class=" col-span-2 col-6 mb-3">
+       <section class="pl-5 form-check ">
         <input type="checkbox" class="form-check-input" id="published" name="ispublished">
         <label class="form-check-label" for="published">Público</label>
        </section>
     </div>
 
     <div class="col-12">
-        <button type="submit" class="btn btn-primary">Registrar</button>
+        <button type="submit" class="btn btn-primary">Subir documento</button>
     </div>
 </form>
