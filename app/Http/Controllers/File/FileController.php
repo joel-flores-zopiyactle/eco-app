@@ -58,4 +58,17 @@ class FileController extends Controller
 
        return false;
     }
+
+    public function dowloandFile(int $id)
+    {
+        $file = $this->findFileById($id);
+
+        if (!$file) abort(404, 'No se encontro el archivo para descargar.');
+
+        $fileName = pathinfo($file->url, PATHINFO_BASENAME);
+        $filePath = storage_path("app/public/{$fileName}");
+        if (!Storage::disk('public')->exists($fileName)) abort(404, 'No se encontro el archivo para descargar.');
+
+        return response()->download($filePath, $fileName);
+    }
 }

@@ -14,24 +14,15 @@
           <p class="card-text"><small class="text-body-secondary">Creado el {{ $document->created_at->formatLocalized('%d %B %Y') }}</small></p>
         </div>
 
-        <div class="w-100 d-flex footer px-3">
+        <div class="w-100 d-flex footer p-3">
 
-            <a href="#" title="Me gusta">
-                <span class="material-symbols-outlined">
-                    thumb_up
-                </span>
-            </a>
-
-            <a class="mx-3" href="#" title="Ver vista previa">
-                <span class="material-symbols-outlined">
-                    visibility
-                </span>
-            </a>
-
-            <a href="#" title="Descargar archivo">
-                <span class="material-symbols-outlined">
+            <a class="w-100 btn btn-primary d-flex justify-items-center justify-content-center text-white"
+            href="{{route('dowloand-file', ['id' => $document->file->id ])}}"
+            title="Descargar archivo">
+                <span class="material-symbols-outlined me-1">
                     download_2
                 </span>
+                Descargar documento
             </a>
         </div>
       </div>

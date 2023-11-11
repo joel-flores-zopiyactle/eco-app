@@ -47,5 +47,8 @@ Route::put('/documents/{id}/update', [App\Http\Controllers\Documents\DocumentsCo
 Route::get('{id}/cover', [App\Http\Controllers\Documents\CoverDocumentController::class, 'showByDocument'])->name('show-cover');
 
 
+/* Files */
+Route::get('/file/{id}/dowloand', [App\Http\Controllers\File\FileController::class, 'dowloandFile'])->name('dowloand-file');
+
 
 
