@@ -1,25 +1,28 @@
 <nav class="w-100 d-flex justify-content-between px-4 text-white">
-    <div class="logo py-2">
-        <h3>App 2023</h3>
+    <div class="logo py- text-dark pt-2">
+        <a class="h4" style="text-decoration: none" href="{{ route('welcome')}}">Materiales 2023</a>
     </div>
 
     <div class="menu">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-2">
 
             @if (Route::has('login'))
                 <div class="d-flex align-items-center">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Home</a>
+                            <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ url('/home') }}">Home</a>
                         </li>
                     @else
+                        @if ($showLoginIn)
                         <li class="nav-item ps-3">
-                            <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Login In</a>
+                            <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ route('login') }}">Login In</a>
                         </li>
+                        @endif
+
 
                         @if (Route::has('register'))
                             <li class="nav-item ps-3">
-                                <a class="nav-link active" aria-current="page" href="{{ route('register') }}">Register</a>
+                                <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ route('register') }}">Register</a>
                             </li>
                         @endif
                     @endauth

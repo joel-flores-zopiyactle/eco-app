@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class Login extends Component
 {
+    public $showLoginIn;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($showLoginIn = true)
     {
-        //
+        $this->showLoginIn = $showLoginIn;
     }
 
     /**

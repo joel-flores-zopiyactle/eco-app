@@ -22,32 +22,8 @@
             <section>
                 <x-home.banner></x-home.banner>
             </section>
-
-            <section class="container py-5">
-
-                <div class="row">
-
-                    <div class="col-lg-3 col-12">
-                        <x-home.menu-category :categorys="$categorys"></x-home.menu-category>
-                    </div>
-                    <div class="col-lg-9 col-12">
-
-                       <div class="d-flex justify-content-between align-items-center">
-                            <section class="w-100">
-                                <h2 class="p-0 m-0">Lista de materiales</h2>
-                            </section>
-
-                            <form action="{{ route('search-documents-index')}}" class="d-flex py-4 w-100" role="search" method="POST">
-                                @csrf
-                                <input class="form-control me-2" name="keywords" type="search" placeholder="Comienza buscado por el titulo ...." aria-label="Search">
-                                <button class="btn btn-outline-dark" type="submit">Search</button>
-                            </form>
-                       </div>
-
-                        <x-home.books :documents="$documents"></x-home.books>
-                    </div>
-                </div>
-            </section>
         </main>
+
+        <x-footer></x-footer>
     </body>
 </html>
