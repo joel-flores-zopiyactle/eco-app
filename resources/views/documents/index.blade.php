@@ -1,16 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('panel')
-    <div class="w-100 d-flex justify-content-between align-items-center py-2">
-        <h4><strong>Lista de documentos</strong></h4>
 
-        <a class="btn btn-primary d-flex align-items-center justify-content-center" href="{{ route('create-document')}}">
-            <span class="material-symbols-outlined">
-                add
-            </span>
-            Nuevo documento
-        </a>
-    </div>
+    <x-title-header-section
+    title="Lista de documentos"
+    routeUrl="create-document"
+    colorBtn="btn-primary"
+    titleBtn="Nuevo documento">
+    </x-title-header-section>
 
     <x-alert></x-alert>
 
@@ -18,19 +15,7 @@
 
         @if ($documents->count() > 0)
 
-            {{-- Search --}}
-            <section class="w-50">
-                <form action="{{ route('search-documents')}}" class="d-flex mb-3" role="search" method="POST" autocomplete="off">
-                    @csrf
-                    <input class="form-control me-2" type="search" name="keywords" placeholder="Buscar por titulo, id, categoría..." aria-label="Search">
-                    <button class="btn btn-outline-secondary text-dark d-flex" type="submit">
-                        <span class="material-symbols-outlined ms-1">
-                            search
-                        </span>
-                        Buscar
-                    </button>
-                </form>
-            </section>
+            <x-form-search routeUrl="search-documents" placeholder="Buscar por título, id, categoría..."></x-form-search>
 
             <table class="table table-hover">
                 <thead class="table-light">
@@ -51,30 +36,21 @@
                             <td>{{ $document->description }}</td>
                             <td>{{ $document->type }}</td>
                             <td>
-                                <div class="badge text-bg-success px-2 py-1 rounded">
+                                <div class="badge text-bg-success px-2 py-2 rounded">
                                     {{ $document->category->name}}
                                 </div>
                             </td>
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
 
-                                    <form action="{{ route('delete-document', ["id" => $document->id])}}" method="POST" id="delete-item-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                        id="delete-item"
-                                        class="btn btn-outline-danger btn-action">
-                                            <span class="material-symbols-outlined text-sm">
-                                                delete
-                                            </span>
-                                        </button>
-                                    </form>
+                                    <x-delete-item-alert
+                                    routeUrl="delete-document"
+                                    title="Confirmar Eliminación"
+                                    subtitle="¿Estás seguro de que deseas eliminar el documento?"
+                                    :itemId="$document->id"
+                                    ></x-delete-item-alert>
 
-                                    <a href="{{ route('edit-document', ['id' => $document->id]) }}" class="btn btn-light ms-3 btn-action">
-                                        <span class="material-symbols-outlined">
-                                            edit
-                                        </span>
-                                    </a>
+                                    <x-edit-item routeUrl="edit-document" :itemId="$document->id"></x-edit-item>
 
                                 </section>
                             </td>
@@ -87,19 +63,11 @@
                 {{ $documents->links() }}
             </div>
         @else
-
-            <div class="empty-state d-flex justify-content-center align-items-center p-5">
-                <img style="width: 30%" src="{{ asset('assets/svg/files.svg')  }}" alt="Not found files">
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center px-5 py-2 text-center">
-                    <h4>
-                        <strong>¡Opps!</strong>
-                        <br>
-                        <br>
-                        <b>Parace que aún no tenemos documentos</b>
-                    </h4>
-            </div>
+            <x-empty-state-page
+            imageUrl="assets/svg/files.svg"
+            title="¡Opps!"
+            subtitle="Parace que aún no tenemos documentos">
+            </x-empty-state-page>
         @endif
 
     </section>

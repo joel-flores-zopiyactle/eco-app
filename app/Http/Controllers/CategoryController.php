@@ -46,6 +46,7 @@ class CategoryController extends Controller
 
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->isPublished = $request->ispublished ? true : false;
 
         if($category->save()) {
             return back()->with('success', 'Categoría registrada con éxito.');
@@ -92,11 +93,13 @@ class CategoryController extends Controller
         $category = $this->show($id);
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->isPublished = $request->ispublished ? true : false;
+
         if($category->save()) {
             return back()->with('success', 'Categoría actualizada exitosamente.');
         }
 
-        return back()->with('error', 'Fallo al actualizar la categoria.');
+        return back()->with('error', 'Fallo al actualizar la categoría.');
     }
 
     /**
@@ -115,7 +118,7 @@ class CategoryController extends Controller
 
         } catch (\Throwable $th) {
             return back()
-            ->with('error', 'Fallo al eliminar la categoria.');
+            ->with('error', 'Fallo al eliminar la categoría.');
         }
     }
 }

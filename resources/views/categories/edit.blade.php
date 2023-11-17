@@ -4,10 +4,9 @@
 
 @section('panel')
 
-   <x-alert></x-alert>
-
 <div class="row">
     <div class="col-8">
+        <x-alert></x-alert>
         <section class="shadow rounded-2 p-4 page-admin">
 
             <div class="w-100 d-flex justify-content-between align-items-center py-3">
@@ -35,6 +34,15 @@
                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <section class="pl-5">
+                            <input type="checkbox" class="form-check-input" id="published" name="ispublished"
+                            {{ $category->isPublished ? 'checked' : '' }}>
+                            <label class="form-check-label" for="published">Público</label>
+                        </section>
+                     </div>
+                </div>
 
 
                <div class="w-100">
@@ -46,4 +54,6 @@
     </div>
     <div class="col-4"></div>
 </div>
+
+
 @endsection

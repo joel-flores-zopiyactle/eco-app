@@ -4,7 +4,6 @@
 
 @section('panel')
 
-
     <x-title-header-section
     title="Lista de categorías"
     routeUrl="create-category"
@@ -16,12 +15,16 @@
 
     <section class="shadow rounded-2 p-4 page-admin bg-white">
         @if ($categories->count() > 0)
+
+            <x-form-search routeUrl="search-documents" placeholder="Buscar por título"></x-form-search>
+
             <table class="table table-hover rounded p-5">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Descripción</th>
+                        <th scope="col">Id</th>
+                        <th scope="col" style="width: 20%;">Titulo</th>
+                        <th scope="col" style="width: 50%;">Descripción</th>
+                        <th scope="col">Público</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -32,28 +35,21 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>
+                                <x-badge-item :isPublished="$category->isPublished"></x-badge-item>
+                            </td>
+                            <td>
                                 <section class="d-flex align-items-center justify-content-center">
 
-                                    <form action="{{ route('destroy-category', ["id" => $category->id])}}" method="POST" id="delete-item-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                        id="delete-item"
-                                        class="btn btn-outline-danger btn-action">
-                                            <span class="material-symbols-outlined text-sm">
-                                                delete
-                                            </span>
-                                        </button>
-                                    </form>
+                                    <x-delete-item-alert
+                                    routeUrl="destroy-category"
+                                    title="Confirmar Eliminación"
+                                    subtitle="¿Estás seguro de que deseas eliminar esta categoría?"
+                                    :itemId="$category->id"
+                                    ></x-delete-item-alert>
 
-                                    <a href="{{ route('edit-category', ['id' => $category->id]) }}" class="btn btn-light ms-3 btn-action">
-                                        <span class="material-symbols-outlined">
-                                            edit
-                                        </span>
-                                    </a>
+                                    <x-edit-item routeUrl="edit-category" :itemId="$category->id"></x-edit-item>
 
                                 </section>
-
                             </td>
                         </tr>
                     @endforeach
@@ -64,18 +60,11 @@
                 {{ $categories->links() }}
             </div>
         @else
-            <div class="empty-state d-flex justify-content-center align-items-center p-5">
-                <img style="width: 30%" src="{{ asset('assets/svg/categories.svg')  }}" alt="Not found files">
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center px-5 py-2 text-center">
-                    <h4>
-                        <strong>¡Opps!</strong>
-                        <br>
-                        <br>
-                        <b>Parace que aún no tenemos categorías</b>
-                    </h4>
-            </div>
+            <x-empty-state-page
+            imageUrl="assets/svg/categories.svg"
+            title="¡Opps!"
+            subtitle="Parace que aún no tenemos categorías">
+            </x-empty-state-page>
         @endif
     </section>
 @endsection
