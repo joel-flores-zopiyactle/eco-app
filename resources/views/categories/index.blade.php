@@ -5,22 +5,18 @@
 @section('panel')
 
 
-    <div class="w-100 d-flex justify-content-between align-items-center py-2">
-        <h4><strong>Lista de categorías</strong></h4>
-
-        <a class="btn btn-primary d-flex align-items-center justify-content-center" href="{{ route('create-category')}}">
-            <span class="material-symbols-outlined">
-                add
-            </span>
-            Nuevo documento
-        </a>
-    </div>
+    <x-title-header-section
+    title="Lista de categorías"
+    routeUrl="create-category"
+    colorBtn="btn-primary"
+    titleBtn="Nueva categoría">
+    </x-title-header-section>
 
     <x-alert></x-alert>
 
-    <section class="shadow rounded-2 p-4 page-admin">
+    <section class="shadow rounded-2 p-4 page-admin bg-white">
         @if ($categories->count() > 0)
-            <table class="table table-hover">
+            <table class="table table-hover rounded p-5">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>

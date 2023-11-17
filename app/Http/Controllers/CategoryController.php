@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Categorys::orderByDesc('id')->paginate(15);
+        $categories = Categorys::orderByDesc('id')->paginate(10);
         $successMessage = session('success', ''); // Recupera el mensaje de éxito -> ¿Si existe?
         return view('categories.index', ['categories' => $categories, 'active' => true])
         ->with('success', $successMessage);

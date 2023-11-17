@@ -21,8 +21,6 @@
     --malibu-800: #025b8a;
     --malibu-900: #084c72;
     --malibu-950: #06304b;
-
-
 }
 
 body {
@@ -45,10 +43,11 @@ body {
     border: 1px solid var(--malibu-950) !important;
 }
 
-.btn-primary {
+/* .btn-primary {
     border: 1px solid var(--malibu-800) !important;
     background: var(--malibu-600) !important;
-}
+} */
+
 
 
 .menu-admin {
@@ -93,6 +92,12 @@ body {
             width: 150px;
             height: 150px;
             object-fit: contain;
+        }
+    }
+
+    .upload-file-document {
+        img {
+            width: 60px;
         }
     }
 
@@ -219,6 +224,16 @@ body {
     cursor: pointer;
     list-style: none;
     text-decoration: none;
+
+    .card-body {
+        min-height: 130px;
+        max-height: 150px;
+        overflow: hidden;
+        margin-bottom: 5px;
+        text-overflow: ellipsis;
+        white-space: wrap;
+    }
+
     &:hover {
         border-left: 6px solid var(--malibu-400);
         box-shadow: 3px 3px 3px 2px var(--malibu-200);

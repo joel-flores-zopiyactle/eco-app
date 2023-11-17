@@ -21,7 +21,7 @@
                 </div>
 
                 @foreach ($categories as $category)
-                    <div class="col-3">
+                    <div class="col-3 mb-4">
                         <a class="card card-category-admin" href="{{route('documents', ['show' => $category->name])}}">
                             <div class="card-body">
                                 <h5 class="card-title">

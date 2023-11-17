@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('panel')
-    <div class="row">
+    <div class="row bg-white">
         <div class="col-7">
             <h3 class="mb-4">Registrar documento</h3>
 
