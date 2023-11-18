@@ -2,9 +2,10 @@
 
 @section('panel')
    <div class="row">
-    <div class="col-7">
-        <h3 class="mb-4">Registrar categoría</h3>
-        <section class="shadow rounded-2 p-4">
+    <div class="col-7 shadow rounded-2 p-4">
+        <x-back routeUrl="categories"></x-back>
+        <h3 class="mb-4 mt-3">Registrar categoría</h3>
+        <section>
             <x-categorys.form-register/>
         </section>
     </div>

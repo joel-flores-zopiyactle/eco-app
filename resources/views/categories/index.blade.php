@@ -64,11 +64,17 @@
             @if ($isNotFound)
                 <x-form-search routeUrl="search-category" placeholder="Buscar por título"></x-form-search>
                 <div class="w-100 mt-5">
-                    <div class="w-100 d-flex justify-content-center">
+
+                    <div class="w-100 d-flex justify-content-center py-4">
                         <img width="100" src="{{asset('assets/svg/not-found.svg')}}" alt="" srcset="">
                     </div>
+
+                    <div class="w-100 d-flex justify-content-center my-2">
+                        <h3 class="bold">No se encontraron resultados para tu búsqueda.</h3>
+                    </div>
+
                     <div class="w-100 d-flex justify-content-center">
-                        <h3 class="bold my-5">No hay resultados con tu busqueda</h3>
+                        <x-back routeUrl="categories"></x-back>
                     </div>
                 </div>
             @else

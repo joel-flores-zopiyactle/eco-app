@@ -57,6 +57,14 @@ body {
     }
 }
 
+.back-btn {
+    &:hover {
+        img {
+            filter: invert(100%) brightness(150%);
+        }
+    }
+}
+
 .page-admin {
     .btn-action {
         display: flex !important;

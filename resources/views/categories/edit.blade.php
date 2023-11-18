@@ -9,6 +9,7 @@
         <x-alert></x-alert>
         <section class="shadow rounded-2 p-4 page-admin">
 
+            <x-back routeUrl="categories"></x-back>
             <div class="w-100 d-flex justify-content-between align-items-center py-3">
                 <h4>Actualizar categoría</h4>
             </div>

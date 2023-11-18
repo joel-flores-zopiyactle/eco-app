@@ -112,13 +112,15 @@ class CategoryController extends Controller
         try {
             if ($category) {
                 $category->delete();
+                return redirect('/category')->with('success', 'Categoría eliminado exitosamente.');
                 return back()
                 ->with('success', 'Categoría eliminado exitosamente.');
             }
 
+            return redirect('/category')->with('error', 'Fallo al eliminar la categoría.');
+
         } catch (\Throwable $th) {
-            return back()
-            ->with('error', 'Fallo al eliminar la categoría.');
+            return redirect('/category')->with('error', "Fallo al eliminar la categoría. Verifica si hay documentos asociados.");
         }
     }
 
