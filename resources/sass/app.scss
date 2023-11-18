@@ -43,31 +43,12 @@ body {
     border: 1px solid var(--malibu-950) !important;
 }
 
-/* .btn-primary {
-    border: 1px solid var(--malibu-800) !important;
-    background: var(--malibu-600) !important;
-} */
-
-
-
 .menu-admin {
-    .nav-link {
-        margin-bottom: 5px;
-        transition: background ease-in-out .3s;
-        color: #000000;
-        font-size: 14px;
-        border-radius: 20px;
-        border: 1px solid var(--malibu-200);
-
-        span {
-            margin-right: 6px;
-        }
-
+    .btn {
         &:hover {
-            background: var(--malibu-100);
-            border: 1px solid var(--malibu-600);
-            font-weight: 700;
-            color: #191919;
+            img {
+                filter: invert(100%) brightness(150%);
+            }
         }
     }
 }
