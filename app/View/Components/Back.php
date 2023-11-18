@@ -9,12 +9,14 @@ use Illuminate\View\Component;
 class Back extends Component
 {
     public $routeUrl;
+    public $param;
     /**
      * Create a new component instance.
      */
-    public function __construct($routeUrl = '#')
+    public function __construct($routeUrl = '#', $param = false)
     {
         $this->routeUrl = $routeUrl;
+        $this->param = $param;
     }
 
     /**

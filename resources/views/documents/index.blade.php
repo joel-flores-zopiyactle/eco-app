@@ -45,9 +45,7 @@
                                </section>
                             </td>
                             <td>
-                                <div class="badge text-bg-success px-2 py-2 rounded">
-                                    <x-badge-item :isPublished="$document->isPublished"></x-badge-item>
-                                </div>
+                                <x-badge-item :isPublished="$document->isPublished"></x-badge-item>
                             </td>
 
                             <td>
@@ -81,11 +79,29 @@
                 {{ $documents->links() }}
             </div>
         @else
-            <x-empty-state-page
-            imageUrl="assets/svg/files.svg"
-            title="¡Opps!"
-            subtitle="Parace que aún no tenemos documentos">
-            </x-empty-state-page>
+            @if ($isNotFound ?? false)
+                <x-form-search routeUrl="search-category" placeholder="Buscar por título"></x-form-search>
+                <div class="w-100 mt-5">
+
+                    <div class="w-100 d-flex justify-content-center py-4">
+                        <img width="100" src="{{asset('assets/svg/not-found.svg')}}" alt="" srcset="">
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-center my-2">
+                        <h3 class="bold">No se encontraron resultados para tu búsqueda.</h3>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-center">
+                        <x-back routeUrl="documents" param="all"></x-back>
+                    </div>
+                </div>
+            @else
+                <x-empty-state-page
+                imageUrl="assets/svg/files.svg"
+                title="¡Opps!"
+                subtitle="Parace que aún no tenemos documentos">
+                </x-empty-state-page>
+            @endif
         @endif
 
     </section>

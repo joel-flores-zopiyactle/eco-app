@@ -112,9 +112,8 @@ class DocumentsController extends Controller
 
     public function search(Request $document) {
         $documents = Documents::where('title', 'LIKE', '%' . $document->keywords . '%')->paginate(20);
-        return view('documents.index', [
-            'documents' => $documents
-        ]);
+        $isNotFound = $documents->count() < 1; // True o False
+        return view('documents.index', ['documents' => $documents, 'isNotFound' => $isNotFound]);
     }
 
     /**
@@ -166,7 +165,7 @@ class DocumentsController extends Controller
 
         $url = "/documents/$document->id/edit/";
         if($document->save()) {
-            return redirect($url)->with('success', 'El producto se ha actualizado correctamente.');
+            return redirect($url)->with('success', 'El documento se ha actualizado correctamente.');
         }
 
         return redirect($url)->with('error', 'Fallo al actualizar el documento.');
@@ -181,15 +180,26 @@ class DocumentsController extends Controller
         $doc = $this->show($id);
 
         if ($doc) {
-            if($doc->delete()) {
-                return back()->with('success', 'Registro eliminado exitosamente');
+
+            if($doc->image) {
+                $cover = new CoverDocumentController();
+                $cover->destroy($doc->image);
             }
 
-            return back()->with('error', 'Se produjo un error al eliminar el documento.');
+            if($doc->file) {
+                $fileDocument = new FileController();
+                $fileDocument->destroy($doc->file);
+            }
+
+            if($doc->delete()) {
+                return redirect('/documents/all/list')->with('success', 'Registro eliminado exitosamente');
+            }
+
+            return redirect('/documents/all/list')->with('error', 'Se produjo un error al eliminar el documento.');
 
         }
 
-        return back()->with('error', 'No se pudo encontrar el registro');
+        return redirect('/documents/all/list')->with('error', 'No hay registros del documento.');
     }
 
 
