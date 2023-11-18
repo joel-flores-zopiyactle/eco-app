@@ -11,18 +11,18 @@
 
     <x-alert></x-alert>
 
-    <section class="shadow rounded-2 p-4 document-page page-admin">
+    <section class="shadow rounded-2 p-4 document-page page-admin bg-white">
 
         @if ($documents->count() > 0)
 
             <x-form-search routeUrl="search-documents" placeholder="Buscar por título, id, categoría..."></x-form-search>
 
             <table class="table table-hover">
-                <thead class="table-light">
+                <thead class="table-primary">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Descripción</th>
+                        <th scope="col">Id</th>
+                        <th scope="col" style="width: 20%;">Título</th>
+                        <th scope="col" style="width: 40%;">Descripción</th>
                         <th scope="col">Tipo de documento</th>
                         <th scope="col">Categoría</th>
                         <th scope="col"></th>
@@ -31,9 +31,9 @@
                 <tbody>
                     @foreach ($documents as $document)
                         <tr>
-                            <td>{{ $document->id }}</td>
-                            <td>{{ $document->title }}</td>
-                            <td>{{ $document->description }}</td>
+                            <td><strong>{{ $document->id }}</strong></td>
+                            <td class="text-truncate text-break">{{ $document->title }}</td>
+                            <td class="text-truncate text-break" style="max-width: 130px;">{{ $document->description }}</td>
                             <td>{{ $document->type }}</td>
                             <td>
                                 <div class="badge text-bg-success px-2 py-2 rounded">
@@ -42,6 +42,8 @@
                             </td>
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
+
+                                    <x-preview-item :document="$document"></x-preview-item>
 
                                     <x-delete-item-alert
                                     routeUrl="delete-document"

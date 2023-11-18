@@ -121,4 +121,11 @@ class CategoryController extends Controller
             ->with('error', 'Fallo al eliminar la categoría.');
         }
     }
+
+
+    public function searchCategory(Request $category) {
+        $categories = Categorys::where('name', 'LIKE', '%' . $category->keywords . '%')->paginate(20);
+        $isNotFound = $categories->count() < 1; // True o False
+        return view('categories.index', ['categories' => $categories, 'isNotFound' => $isNotFound]);
+    }
 }

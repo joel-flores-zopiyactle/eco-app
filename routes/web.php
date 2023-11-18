@@ -29,6 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories');
 Route::get('/category/register', [App\Http\Controllers\CategoryController::class, 'create'])->name('create-category');
 Route::post('/category', [App\Http\Controllers\CategoryController::class, 'store'])->name('register-category');
+Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'searchCategory'])->name('search-category');
 Route::get('/category/{id}/edit', [App\Http\Controllers\CategoryController::class, 'edit'])->name('edit-category');
 Route::put('/category/{id}/update', [App\Http\Controllers\CategoryController::class, 'update'])->name('update-category');
 Route::delete('/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('destroy-category');

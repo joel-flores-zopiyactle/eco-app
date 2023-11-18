@@ -16,22 +16,22 @@
     <section class="shadow rounded-2 p-4 page-admin bg-white">
         @if ($categories->count() > 0)
 
-            <x-form-search routeUrl="search-documents" placeholder="Buscar por título"></x-form-search>
+            <x-form-search routeUrl="search-category" placeholder="Buscar por título"></x-form-search>
 
-            <table class="table table-hover rounded p-5">
-                <thead class="table-light">
+            <table class="table table-hover w-100 rounded-full p-5">
+                <thead class="table-primary">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col" style="width: 20%;">Titulo</th>
+                        <th scope="col" style="width: 20%;">Título</th>
                         <th scope="col" style="width: 50%;">Descripción</th>
                         <th scope="col">Público</th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white">
                     @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            <td><strong>{{ $category->id }}</strong></td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>
@@ -60,11 +60,24 @@
                 {{ $categories->links() }}
             </div>
         @else
-            <x-empty-state-page
-            imageUrl="assets/svg/categories.svg"
-            title="¡Opps!"
-            subtitle="Parace que aún no tenemos categorías">
-            </x-empty-state-page>
+
+            @if ($isNotFound)
+                <x-form-search routeUrl="search-category" placeholder="Buscar por título"></x-form-search>
+                <div class="w-100 mt-5">
+                    <div class="w-100 d-flex justify-content-center">
+                        <img width="100" src="{{asset('assets/svg/not-found.svg')}}" alt="" srcset="">
+                    </div>
+                    <div class="w-100 d-flex justify-content-center">
+                        <h3 class="bold my-5">No hay resultados con tu busqueda</h3>
+                    </div>
+                </div>
+            @else
+                <x-empty-state-page
+                imageUrl="assets/svg/categories.svg"
+                title="¡Opps!"
+                subtitle="Parace que aún no tenemos categorías">
+                </x-empty-state-page>
+            @endif
         @endif
     </section>
 @endsection
