@@ -20,7 +20,11 @@
 
                 <div class="col-5">
                     <div class="w-100">
-                        <img class="w-100 object-fit-none border rounded" src="{{$document->image->url}}" alt="" srcset="">
+                        <img class="w-100 object-fit border rounded"
+                        src="{{$document->image->url ?? asset('assets/svg/not-found-img.svg')}}"
+                        alt="cover"
+                        onerror="this.onerror=null; this.src='{{asset('assets/svg/not-found-img.svg')}}'"
+                        >
                     </div>
                 </div>
                 <div class="col-6">
@@ -28,6 +32,12 @@
                         <p>
                             {{$document->description}}
                         </p>
+                    </section>
+
+                    <section>
+                        <div class="badge text-bg-success px-2 rounded">
+                            <p class="py-1 m-0">{{ $document->category->name}}</p>
+                        </div>
                     </section>
 
                 </div>

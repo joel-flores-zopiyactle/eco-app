@@ -82,6 +82,7 @@ class DocumentsController extends Controller
         $cover = new CoverDocumentController();
         $cover->store($document->cover ,$doc);
 
+        /* Arhivo */
         $fileDocument = new FileController();
         $fileDocument = $fileDocument->store($document->file ,$doc);
 
@@ -91,7 +92,7 @@ class DocumentsController extends Controller
             return back()->with('success', 'Documento registrado con éxito.');
         }
 
-        return back()->with('error', 'Fallo al crear el documento.');
+        return back()->with('error', 'Fallo al crear el documento. Intente de nuevo');
 
     }
 
@@ -110,7 +111,7 @@ class DocumentsController extends Controller
 
 
     public function search(Request $document) {
-        $documents = Documents::where('title', 'LIKE', '%' . $document->keywords . '%')->paginate(10);
+        $documents = Documents::where('title', 'LIKE', '%' . $document->keywords . '%')->paginate(20);
         return view('documents.index', [
             'documents' => $documents
         ]);
@@ -152,6 +153,17 @@ class DocumentsController extends Controller
             $document->type = $this->varifyFileType($file->type);
         }
 
+        // Se actualiza un nuevo documento
+        if($request->updateFile) {
+            $fileDocument = new FileController();
+
+            if($document->file) {
+                $fileDocument->destroy($document->file);
+            }
+
+            $fileDocument = $fileDocument->store($request->updateFile ,$document);
+        }
+
         $url = "/documents/$document->id/edit/";
         if($document->save()) {
             return redirect($url)->with('success', 'El producto se ha actualizado correctamente.');
@@ -169,8 +181,12 @@ class DocumentsController extends Controller
         $doc = $this->show($id);
 
         if ($doc) {
-            $doc->delete();
-            return back()->with('success', 'Registro eliminado exitosamente');
+            if($doc->delete()) {
+                return back()->with('success', 'Registro eliminado exitosamente');
+            }
+
+            return back()->with('error', 'Se produjo un error al eliminar el documento.');
+
         }
 
         return back()->with('error', 'No se pudo encontrar el registro');

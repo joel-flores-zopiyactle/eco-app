@@ -43,6 +43,24 @@ class FileController extends Controller
         return $file;
     }
 
+    public function findFileByURL(string $url)
+    {
+        $file = FilesDocument::where('url', $url)->get();
+        return $file;
+    }
+
+    public function findFileByDocumentId(int $dcoumentId)
+    {
+        $file = FilesDocument::where('document_id', $dcoumentId)->get();
+        return $file;
+    }
+
+    public function update(int $dcoumentId)
+    {
+        $file = FilesDocument::where('document_id', $dcoumentId)->get();
+        return $file;
+    }
+
 
     public function destroy(FilesDocument $fileDocument)
     {
@@ -58,6 +76,8 @@ class FileController extends Controller
 
        return false;
     }
+
+
 
     public function dowloandFile(int $id)
     {

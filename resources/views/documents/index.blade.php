@@ -21,9 +21,10 @@
                 <thead class="table-primary">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col" style="width: 20%;">Título</th>
-                        <th scope="col" style="width: 40%;">Descripción</th>
-                        <th scope="col">Tipo de documento</th>
+                        <th scope="col" style="width: 25%;">Título</th>
+                        <th scope="col" style="width: 45%;">Descripción</th>
+                        <th scope="col" style="width: 8%;">Tipo</th>
+                        <th scope="col" style="width: 8%;">Público</th>
                         <th scope="col">Categoría</th>
                         <th scope="col"></th>
                     </tr>
@@ -34,12 +35,27 @@
                             <td><strong>{{ $document->id }}</strong></td>
                             <td class="text-truncate text-break">{{ $document->title }}</td>
                             <td class="text-truncate text-break" style="max-width: 130px;">{{ $document->description }}</td>
-                            <td>{{ $document->type }}</td>
+                            <td>
+                               <section class="d-flex align-content-center justify-content-center">
+                                @if ($document->file)
+                                    <strong>{{ Str::upper($document->file->type ?? 'N/A') }}</strong>
+                                @else
+                                    <div class="badge text-bg-danger px-3 py-2">N/A</div>
+                                @endif
+                               </section>
+                            </td>
                             <td>
                                 <div class="badge text-bg-success px-2 py-2 rounded">
-                                    {{ $document->category->name}}
+                                    <x-badge-item :isPublished="$document->isPublished"></x-badge-item>
                                 </div>
                             </td>
+
+                            <td>
+                                <div class="badge text-bg-success px-2 rounded">
+                                    <p class="py-1 m-0 text-truncate text-break" style="max-width: 100px;">{{ $document->category->name}}</p>
+                                </div>
+                            </td>
+
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
 

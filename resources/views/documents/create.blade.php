@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('panel')
-    <div class="row bg-white">
-        <div class="col-7">
+    <div class="row">
+        <div class="col-7 bg-white shadow p-3 rounded">
             <h3 class="mb-4">Registrar documento</h3>
 
             <x-alert></x-alert>
 
-            <section class="shadow rounded-2 p-4">
+            <section class="mt-2">
                 <x-documents.form-register :categorys="$categorys" />
             </section>
         </div>
