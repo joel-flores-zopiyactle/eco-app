@@ -13,7 +13,7 @@
         </div>
 
         @if ($categories->count() > 0)
-        <div class="col-10">
+        <div class="col-10 bg-white shadow p-3 h-100" style="min-height: 80vh">
             <div class="row">
                 <div class="col-12">
                     <h4>Mis secciones</h4>
@@ -22,11 +22,21 @@
 
                 @foreach ($categories as $category)
                     <div class="col-3 mb-4">
-                        <a class="card card-category-admin" href="{{route('documents', ['show' => $category->name])}}">
+                        <a class="card card-category-admin shadow rounded-full card-bg-green"
+                        href="{{route('documents', ['show' => $category->name])}}">
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    <strong>{{$category->name}}</strong>
-                                </h5>
+
+                                <div class="w-100 d-flex align-items-start">
+                                    <img
+                                    class="me-1"
+                                    src="{{asset('assets/svg/category-bluecom.svg')}}"
+                                    alt="icon category" width="30">
+
+                                    <h5 class="card-title mt-1">
+                                        <strong>{{$category->name}}</strong>
+                                    </h5>
+                                </div>
+
                                 <p class="card-text">
                                     {{ $category->description}}
                                 </p>
@@ -34,6 +44,11 @@
                         </a>
                     </div>
                 @endforeach
+
+                <!-- Mostrar la paginación -->
+                <div class="d-flex justify-content-center">
+                    {{ $categories->links() }}
+                </div>
             </div>
         </div>
         @else

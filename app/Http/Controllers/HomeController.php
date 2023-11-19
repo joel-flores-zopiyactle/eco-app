@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Categorys::all();
+        $categories =  Categorys::where('isPublished', true)->paginate(20);
         return view('home', ['categories' => $categories]);
     }
 }

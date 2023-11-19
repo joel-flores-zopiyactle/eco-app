@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorys;
-use Exception;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
 class CategoryController extends Controller
 {

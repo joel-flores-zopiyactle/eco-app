@@ -32,13 +32,19 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td><strong>{{ $category->id }}</strong></td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->description }}</td>
+
+                            <td class="text-truncate text-break" style="max-width: 150px;">{{ $category->name }}</td>
+                            <td class="text-truncate text-break" style="max-width: 130px;">
+                                {{ $category->description }}
+                            </td>
+
                             <td>
                                 <x-badge-item :isPublished="$category->isPublished"></x-badge-item>
                             </td>
                             <td>
                                 <section class="d-flex align-items-center justify-content-center">
+
+                                    <x-preview-category :category="$category"></x-preview-category>
 
                                     <x-delete-item-alert
                                     routeUrl="destroy-category"

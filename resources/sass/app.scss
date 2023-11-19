@@ -21,6 +21,30 @@
     --malibu-800: #025b8a;
     --malibu-900: #084c72;
     --malibu-950: #06304b;
+
+    --blue-ribbon-50: #eef5ff;
+    --blue-ribbon-100: #d8e7ff;
+    --blue-ribbon-200: #b9d4ff;
+    --blue-ribbon-300: #89baff;
+    --blue-ribbon-400: #5296ff;
+    --blue-ribbon-500: #2a6dff;
+    --blue-ribbon-600: #1c50fd;
+    --blue-ribbon-700: #0c34e9;
+    --blue-ribbon-800: #112bbc;
+    --blue-ribbon-900: #142b94;
+    --blue-ribbon-950: #111c5a;
+
+    --aquamarine-50: #e8fff8;
+    --aquamarine-100: #c6ffeb;
+    --aquamarine-200: #93ffde;
+    --aquamarine-300: #4effd2;
+    --aquamarine-400: #1cfdc4;
+    --aquamarine-500: #00e5aa;
+    --aquamarine-600: #00bc8c;
+    --aquamarine-700: #009775;
+    --aquamarine-800: #00765d;
+    --aquamarine-900: #00614f;
+    --aquamarine-950: #00372e;
 }
 
 body {
@@ -212,25 +236,73 @@ body {
 
 
 .card-category-admin {
-    border-left: 6px solid var(--malibu-400);
-    transition: all ease-in-out .2s;
-    cursor: pointer;
-    list-style: none;
+    background: #ffffff;
+    height: 100%;
+    position: relative;
+    min-height: 180px;
+    transition: all ease-in-out .3s;
     text-decoration: none;
 
-    .card-body {
-        min-height: 130px;
-        max-height: 150px;
+    .card-title {
+        width: 100%; /* ajusta el ancho según tus necesidades */
+        max-height: 100px; /* ajusta la altura máxima según tus necesidades */
         overflow: hidden;
-        margin-bottom: 5px;
         text-overflow: ellipsis;
-        white-space: wrap;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* ajusta el número de líneas que deseas mostrar */
+        -webkit-box-orient: vertical;
+        padding: 0px; /* solo para visualización */
+        font-size: 16px;
+    }
+    .card-text {
+        width: 100%; /* ajusta el ancho según tus necesidades */
+        max-height: 150px; /* ajusta la altura máxima según tus necesidades */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* ajusta el número de líneas que deseas mostrar */
+        -webkit-box-orient: vertical;
+        padding: 0px; /* solo para visualización */
+        font-size: 12px;
     }
 
     &:hover {
-        border-left: 6px solid var(--malibu-400);
-        box-shadow: 3px 3px 3px 2px var(--malibu-200);
-        color: rgb(57, 56, 56);
-        transform: scale(1.01);
+        width: 300px;
+        position: absolute;
+        transform: scale(1.1);
+        height: auto;
+        min-height: 180px;
+        z-index: 3;
+
+        .card-title {
+            width: 100%; /* ajusta el ancho según tus necesidades */
+            max-height: 100%; /* ajusta la altura máxima según tus necesidades */
+            overflow: none;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: unset; /* ajusta el número de líneas que deseas mostrar */
+            -webkit-box-orient: vertical;
+            padding: 0px; /* solo para visualización */
+        }
+        .card-text {
+            width: 100%; /* ajusta el ancho según tus necesidades */
+            max-height: 100%; /* ajusta la altura máxima según tus necesidades */
+            overflow: none;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: unset; /* ajusta el número de líneas que deseas mostrar */
+            -webkit-box-orient: vertical;
+            padding: 0px; /* solo para visualización */
+        }
     }
 }
+
+
+.card-bg-green {
+    border: 1.5px solid var(--aquamarine-500);
+    &:hover {
+        border: 1.4px solid var(--blue-ribbon-400);
+        background: rgb(242, 249, 254);
+    }
+}
+
