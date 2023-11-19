@@ -14,7 +14,7 @@
           <p class="card-text"><small class="text-body-secondary">Creado el {{ $document->created_at->formatLocalized('%d %B %Y') }}</small></p>
         </div>
 
-        <div class="w-100 d-flex footer p-3">
+        <div class="w-100 d-flex footer px-3 pb-3">
           <a class="w-100 btn btn-primary d-flex justify-items-center justify-content-center text-white"
             href="{{route('details-document', ['id' => $document->id ])}}"
             title="Descargar archivo">

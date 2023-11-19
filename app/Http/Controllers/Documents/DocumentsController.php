@@ -17,21 +17,32 @@ class DocumentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(string $filter)
+    public function index(string $filter, string $columnOrder = 'id', string $orderBy = 'desc')
     {
 
+
         $documents = [];
+        $isShowDocumentsByCategory = false;
+        $categoryName = 'all';
+
         if($filter === 'all') {
-            $documents = Documents::orderByDesc('id')->paginate(10);
+            $documents = Documents::orderBy($columnOrder, $orderBy)->paginate(15);
         }
 
         if($filter !== 'all') {
             $category = Categorys::where('name', $filter)->first();
-            $documents = Documents::where('category_id', $category->id)->orderByDesc('id')->paginate(10);
+            $documents = Documents::where('category_id', $category->id)->orderBy($columnOrder, $orderBy)->paginate(15);
+            $isShowDocumentsByCategory = true;
+            if($category) {
+                $categoryName = $category->name;
+            }
         }
 
         return view('documents.index', [
-            'documents' => $documents
+            'documents' => $documents,
+            'isShowDocumentsByCategory' => $isShowDocumentsByCategory,
+            'categoryName' => $categoryName,
+            'orderBy' => $orderBy
         ]);
     }
 

@@ -38,7 +38,7 @@
         @error('cover')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
         @enderror
-        <div id="fileHelp" class="form-text">Sube un imagen para la vista de tu documento</div>
+        <div id="fileHelp" class="form-text">Sube un imagen para la vista de tu documento. (Files admitidos:.jpg, .jpeg, .png, .gif)</div>
     </div>
 
     <div class="mb-3 col-6">
@@ -47,7 +47,7 @@
         @error('file')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
         @enderror
-        <div id="fileDocument" class="form-text">Sube el archivo ligado al documento</div>
+        <div id="fileDocument" class="form-text">Sube el archivo ligado al documento (Files admitidos: .jpg, .jpeg, .png, .gif, .pdf, .mp3, .mp4, .avi, .mov)</div>
     </div>
 
 

@@ -92,7 +92,5 @@ class CoverDocumentController extends Controller
             $coverDocument->delete();
 
         }
-
-       return redirect("/documents/$coverDocument->document_id/edit")->with('error', 'Fallo al actualizar el documento.');
     }
 }

@@ -32,7 +32,7 @@
 
                 <div class="row">
 
-                    <div class="col-lg-3 col-12">
+                    <div class="col-lg-3 col-12 pt-4">
                         <x-home.menu-category :categorys="$categorys"></x-home.menu-category>
                     </div>
                     <div class="col-lg-9 col-12">

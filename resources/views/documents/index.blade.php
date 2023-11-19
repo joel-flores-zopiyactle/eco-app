@@ -3,7 +3,7 @@
 @section('panel')
 
     <x-title-header-section
-    title="Lista de documentos"
+    title="Lista de documentos ({{$documents->count()}})"
     routeUrl="create-document"
     colorBtn="btn-primary"
     titleBtn="Nuevo documento">
@@ -20,11 +20,48 @@
             <table class="table table-hover">
                 <thead class="table-primary">
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col" style="width: 25%;">Título</th>
+                        <th scope="col">
+                            <section class="d-flex align-items-center">
+                                Id
+                                <x-admin.order-by
+                                routeUrl="documents"
+                                :showList="$categoryName"
+                                orderColumn="id"
+                                :orderBy="$orderBy === 'desc' ? 'asc': 'desc'"
+                                ></x-admin.order-by>
+                            </section>
+
+                        </th>
+                        <th scope="col" style="width: 25%;">
+                            <section class="d-flex align-items-center">
+                                Título
+                                <x-admin.order-by
+                                routeUrl="documents"
+                                :showList="$categoryName"
+                                orderColumn="title"
+                                :orderBy="$orderBy === 'desc' ? 'asc': 'desc'"
+                                ></x-admin.order-by>
+                            </section>
+
+
+                        </th>
                         <th scope="col" style="width: 45%;">Descripción</th>
-                        <th scope="col" style="width: 8%;">Tipo</th>
-                        <th scope="col" style="width: 8%;">Público</th>
+                        <th scope="col" style="width: 8%;">
+                            <div class="d-flex align-items-center">
+                                Tipo
+                            </div>
+                        </th>
+                        <th scope="col" style="width: 8%;">
+                            <section class="d-flex align-items-center">
+                                Público
+                                <x-admin.order-by
+                                routeUrl="documents"
+                                :showList="$categoryName"
+                                orderColumn="isPublished"
+                                :orderBy="$orderBy === 'desc' ? 'asc': 'desc'"
+                                ></x-admin.order-by>
+                            </section>
+                        </th>
                         <th scope="col">Categoría</th>
                         <th scope="col"></th>
                     </tr>
@@ -99,7 +136,7 @@
                 <x-empty-state-page
                 imageUrl="assets/svg/files.svg"
                 title="¡Opps!"
-                subtitle="Parace que aún no tenemos documentos">
+                subtitle="Parace que aún no tenemos documentos {{$isShowDocumentsByCategory ? 'en la categoría: ' . $categoryName  : ''}}">
                 </x-empty-state-page>
             @endif
         @endif

@@ -1,12 +1,12 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-light btn-action mx-3" data-bs-toggle="modal"
-data-bs-target="#staticBackdrop{{$category->id}}">
+data-bs-target="#previewCategory{{$category->id}}">
     <img src="{{asset('assets/svg/view.svg')}}" width="25" alt="view">
 </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop{{$category->id}}" data-bs-backdrop="static"
-  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel{{$category->id}}" aria-hidden="true">
+  <div class="modal fade" id="previewCategory{{$category->id}}" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="previewCategoryLabel{{$category->id}}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">

@@ -10,7 +10,7 @@
         @error('name')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
         @enderror
-        <div id="titleHelp" class="form-text">Ingrese el titulo de la categoria</div>
+        <div id="titleHelp" class="form-text">Ingrese el título de la categoría</div>
     </div>
 
     <div class="mb-3">

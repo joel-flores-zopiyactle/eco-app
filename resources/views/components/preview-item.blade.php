@@ -36,7 +36,7 @@
 
                     <section>
                         <div class="badge text-bg-success px-2 rounded">
-                            <p class="py-1 m-0">{{ $document->category->name}}</p>
+                            <p class="py-1 m-0 text-wrap" style="line-height: 20px;">{{ $document->category->name}}</p>
                         </div>
                     </section>
 
