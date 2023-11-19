@@ -45,9 +45,11 @@
                             <form action="{{ route('search-documents-index')}}" class="d-flex py-4 w-100" role="search" method="POST">
                                 @csrf
                                 <input class="form-control me-2" name="keywords" type="search" placeholder="Comienza buscado por el titulo ...." aria-label="Search">
-                                <button class="btn btn-outline-dark" type="submit">Search</button>
+                                <button class="btn btn-outline-dark" type="submit">Buscar</button>
                             </form>
                        </div>
+
+                       <hr>
 
                         <x-home.books :documents="$documents"></x-home.books>
                     </div>

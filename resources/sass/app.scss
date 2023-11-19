@@ -222,6 +222,21 @@ body {
                 background-clip: inherit;
             }
 
+            .card-body {
+                .card-text {
+                    width: 100%; /* ajusta el ancho según tus necesidades */
+                    max-height: 100px; /* ajusta la altura máxima según tus necesidades */
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4; /* ajusta el número de líneas que deseas mostrar */
+                    -webkit-box-orient: vertical;
+                    padding: 0px; /* solo para visualización */
+                    font-size: 14px;
+                }
+            }
+
+
             .footer {
                 display: flex;
                 justify-content: flex-start;
@@ -306,3 +321,6 @@ body {
     }
 }
 
+.text-decoration-none {
+    text-decoration:  none !important;
+}

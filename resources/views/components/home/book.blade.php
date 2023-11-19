@@ -15,14 +15,10 @@
         </div>
 
         <div class="w-100 d-flex footer p-3">
-
-            <a class="w-100 btn btn-primary d-flex justify-items-center justify-content-center text-white"
-            href="{{route('dowloand-file', ['id' => $document->file->id ])}}"
+          <a class="w-100 btn btn-primary d-flex justify-items-center justify-content-center text-white"
+            href="{{route('details-document', ['id' => $document->id ])}}"
             title="Descargar archivo">
-                <span class="material-symbols-outlined me-1">
-                    download_2
-                </span>
-                Descargar documento
+                Ver más...
             </a>
         </div>
       </div>

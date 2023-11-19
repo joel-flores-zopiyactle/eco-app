@@ -44,6 +44,8 @@ Route::delete('/documents/{id}', [App\Http\Controllers\Documents\DocumentsContro
 Route::post('/documents/search', [App\Http\Controllers\Documents\DocumentsController::class, 'search'])->name('search-documents');
 Route::put('/documents/{id}/update', [App\Http\Controllers\Documents\DocumentsController::class, 'update'])->name('update-document');
 
+Route::get('/documents/details/{id}', [App\Http\Controllers\Documents\DocumentsController::class, 'details'])->name('details-document');
+
 
 /* Covers */
 Route::get('{id}/cover', [App\Http\Controllers\Documents\CoverDocumentController::class, 'showByDocument'])->name('show-cover');

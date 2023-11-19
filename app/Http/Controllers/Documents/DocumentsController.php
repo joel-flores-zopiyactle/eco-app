@@ -202,6 +202,14 @@ class DocumentsController extends Controller
         return redirect('/documents/all/list')->with('error', 'No hay registros del documento.');
     }
 
+    public function details(int $id) {
+        $document = $this->show($id);
+
+        return view('details-document', [
+            'document' => $document,
+        ]);
+    }
+
 
     /* Helper */
     public function varifyFileType(string $extension)
