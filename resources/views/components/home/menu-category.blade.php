@@ -6,8 +6,8 @@
     <section>
         <ul class="list-group list-group-flush" style="cursor: pointer;">
 
-            <li class="list-group-item">
-                <a class="btn btn-outline-primary rounded-pill w-100" href="{{route('books-page')}}">Todos</a>
+            <li class="list-group mb-2">
+                <a class="btn btn-outline-dark w-100" href="{{route('books-page')}}">Todos</a>
             </li>
 
             @foreach ($categorys as $category)
