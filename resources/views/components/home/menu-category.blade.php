@@ -11,8 +11,8 @@
             </li>
 
             @foreach ($categorys as $category)
-            <li class="list-group-item">
-                <a  class="btn btn-outline-dark w-100" href="{{ route('filter-serach-category', ['filter' => $category->name]) }}">
+            <li class="list-group mb-2">
+                <a  class="btn btn-outline-dark  w-100" href="{{ route('filter-serach-category', ['filter' => $category->name]) }}">
                     {{ $category->name }}
                 </a>
             </li>
