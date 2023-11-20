@@ -10,12 +10,12 @@
                 <div class="d-flex align-items-center">
                     @auth
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ url('/home') }}">Home</a>
+                            <a class="btn btn-outline-light px-3 rounded-full" aria-current="page" href="{{ url('/home') }}">Home</a>
                         </li>
                     @else
                         @if ($showLoginIn)
                         <li class="nav-item ps-3">
-                            <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ route('login') }}">Login In</a>
+                            <a class="btn btn-outline-light px-3 rounded-full" aria-current="page" href="{{ route('login') }}">Login In</a>
                         </li>
                         @endif
                     @endauth
