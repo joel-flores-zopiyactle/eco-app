@@ -15,7 +15,7 @@
 
         @if ($documents->count() > 0)
 
-            <x-form-search routeUrl="search-documents" placeholder="Buscar por título, id, categoría..."></x-form-search>
+            <x-form-search routeUrl="search-documents" placeholder="Buscar por título"></x-form-search>
 
             <table class="table table-hover">
                 <thead class="table-primary">
