@@ -1,6 +1,6 @@
 <nav class="w-100 d-flex justify-content-between px-4 text-white">
     <div class="logo py- text-dark pt-2">
-        <a class="h4" style="text-decoration: none" href="{{ route('welcome')}}">Materiales 2023</a>
+        <a class="h4" style="text-decoration: none" href="{{ route('welcome')}}">Materiales <strong class="text-primary">2024</strong></a>
     </div>
 
     <div class="menu">
