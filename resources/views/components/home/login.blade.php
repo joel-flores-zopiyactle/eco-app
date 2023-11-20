@@ -18,13 +18,6 @@
                             <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ route('login') }}">Login In</a>
                         </li>
                         @endif
-
-
-                        @if (Route::has('register'))
-                            <li class="nav-item ps-3">
-                                <a class="btn btn-outline-dark px-3 rounded-full" aria-current="page" href="{{ route('register') }}">Register</a>
-                            </li>
-                        @endif
                     @endauth
                 </div>
             @endif

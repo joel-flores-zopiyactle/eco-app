@@ -23,7 +23,7 @@
         </style>
     </head>
     <body class="bg-light">
-        <div class="shadow py-3">
+        <div class="py-3">
             <x-home.login :showLoginIn="false"></x-home.login>
         </div>
 
