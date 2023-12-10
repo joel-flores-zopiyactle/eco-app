@@ -3,6 +3,10 @@
         <div class="py-3">
             <x-home.login></x-home.login>
         </div>
+
+        <section class="container banner-home-img" style="background-image: url({{asset('assets/banner.jpg')}})">
+        </section>
+
         <section class="container wrapper">
             <div class="content w-100">
 
@@ -10,7 +14,7 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" style="min-height: 500px; max-height: 500px">
                           <div class="carousel-item active">
-                            <img style="object-fit: cover; width: 100%;" src="{{asset('assets/banner.jpg')}}" class="d-block w-100" alt="...">
+                            <img style="object-fit: cover; width: 100%;" src="{{asset('assets/bg-home-min.jpg')}}" class="d-block w-100" alt="...">
                           </div>
 
                           <div class="carousel-item">

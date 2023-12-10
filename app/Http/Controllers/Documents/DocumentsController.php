@@ -203,14 +203,15 @@ class DocumentsController extends Controller
             }
 
             if($doc->delete()) {
-                return redirect('/documents/all/list')->with('success', 'Registro eliminado exitosamente');
+                return back()->with('success', 'Registro eliminado exitosamente');
             }
 
-            return redirect('/documents/all/list')->with('error', 'Se produjo un error al eliminar el documento.');
+            return back()->with('error', 'Se produjo un error al eliminar el documento.');
 
         }
 
-        return redirect('/documents/all/list')->with('error', 'No hay registros del documento.');
+        return back()->with('error', 'No hay registros del documento.');
+
     }
 
     public function details(int $id) {
