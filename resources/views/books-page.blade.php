@@ -56,5 +56,7 @@
                 </div>
             </section>
         </main>
+
+        <script src="{{ asset('public/css/assets/app-c75e0372.js') }}"></script>
     </body>
 </html>
