@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +61,6 @@ Route::get('/file/{id}/dowloand', [App\Http\Controllers\File\FileController::cla
 
 
 
+Route::get('storage-link', function() {
+    Artisan::call('storage:link');
+});
