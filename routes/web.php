@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[App\Http\Controllers\HomeUserController::class, 'index'])->name('welcome');
-Route::get('/books-page',[App\Http\Controllers\HomeUserController::class, 'showBooks'])->name('books-page');
+Route::get('/search-docs',[App\Http\Controllers\HomeUserController::class, 'showBooks'])->name('books-page');
 Route::post('/search', [App\Http\Controllers\HomeUserController::class, 'search'])->name('search-documents-index');
 Route::get('/search/filter/{filter}', [App\Http\Controllers\HomeUserController::class, 'filter'])->name('filter-serach-category');
 

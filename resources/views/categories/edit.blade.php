@@ -19,17 +19,17 @@
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Titulo</label>
+                    <label for="name" class="form-label">Título</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" aria-describedby="titleHelp"
                     value="{{$category->name}}">
                     @error('name')
                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                     @enderror
-                    <div id="titleHelp" class="form-text">Ingrese el titulo de la categoria</div>
+                    <div id="titleHelp" class="form-text">Ingrese el título de la categoría</div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Descripcón</label>
+                    <label for="description" class="form-label">Descripción</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{$category->description}}</textarea>
                     @error('description')
                         <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -47,7 +47,7 @@
 
 
                <div class="w-100">
-                <button type="submit" class="btn btn-primary w-100">Actualizar categoria</button>
+                <button type="submit" class="btn btn-primary w-100">Actualizar categoría</button>
                </div>
 
             </form>

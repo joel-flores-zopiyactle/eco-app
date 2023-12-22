@@ -7,13 +7,13 @@
          <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Busqueda - {{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=Inter" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+        <link rel="shortcut icon" href="{{asset('assets/logo.jpg')}}" type="image/x-icon">
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset('public/css/assets/app-60404678.css') }}">
         <style>
@@ -44,7 +44,7 @@
 
                             <form action="{{ route('search-documents-index')}}" class="d-flex py-4 w-100" role="search" method="POST">
                                 @csrf
-                                <input class="form-control me-2" name="keywords" type="search" placeholder="Comienza buscado por el titulo ...." aria-label="Search">
+                                <input class="form-control me-2" name="keywords" type="search" placeholder="Comienza buscado por el título ...." aria-label="Search">
                                 <button class="btn btn-outline-dark" type="submit">Buscar</button>
                             </form>
                        </div>

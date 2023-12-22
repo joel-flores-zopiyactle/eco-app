@@ -39,8 +39,8 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ], [
-            'name.required' => 'El campo titulo es obligatorio.',
-            'name.max' => 'El campo titulo no debe tener más de 255 caracteres.',
+            'name.required' => 'El campo título es obligatorio.',
+            'name.max' => 'El campo título no debe tener más de 255 caracteres.',
             'description.required' => 'El campo descripción es obligatorio.',
         ]);
 
@@ -64,7 +64,7 @@ class CategoryController extends Controller
     {
         $category = Categorys::find($id);
         if(!$category) {
-            return 'No ha resultados de la categoria con ID: #' + strval($id);
+            return 'No ha resultados de la categoría con ID: #' + strval($id);
         }
         return $category;
     }
@@ -87,8 +87,8 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ], [
-            'name.required' => 'El campo titulo es obligatorio.',
-            'name.max' => 'El campo titulo no debe tener más de 255 caracteres.',
+            'name.required' => 'El campo título es obligatorio.',
+            'name.max' => 'El campo título no debe tener más de 255 caracteres.',
             'description.required' => 'El campo descripción es obligatorio.',
         ]);
 

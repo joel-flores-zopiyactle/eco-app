@@ -25,12 +25,12 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3 col-12">
-                    <label for="title" class="form-label">Titulo del documento</label>
+                    <label for="title" class="form-label">Título del documento</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
                     aria-describedby="titleHelp"
                     name="title"
                     value="{{$document->title}}">
-                    <div id="titleHelp" class="form-text @error('title') is-invalid @enderror">Ingrese el titulo de tu documento</div>
+                    <div id="titleHelp" class="form-text @error('title') is-invalid @enderror">Ingrese el título de tu documento</div>
                 </div>
 
                 <div class="mb-3 col-12">
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="mb-3 col-12">
-                    <label for="category" class="form-label">Categoria</label>
+                    <label for="category" class="form-label">Categoría</label>
                     <select class="form-select" aria-label="Default select category" name="category_id">
                         <option value="{{ $document->category->id }}" selected>{{ $document->category->name }}</option>
                         @foreach ($categorys as $category)

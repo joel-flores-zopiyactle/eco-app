@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Scripts -->
     <link rel="stylesheet" href="{{ asset('public/css/assets/app-60404678.css') }}">
+    <link rel="shortcut icon" href="{{asset('assets/logo.jpg')}}" type="image/x-icon">
 </head>
 <body class="bg-light">
     <div id="app">
