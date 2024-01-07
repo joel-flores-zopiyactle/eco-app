@@ -33,11 +33,13 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-12 pt-4">
-                        <x-home.menu-category :categorys="$categorys"></x-home.menu-category>
+                        <div style="position: sticky; top: 10px">
+                            <x-home.menu-category :categorys="$categorys"></x-home.menu-category>
+                        </div>
                     </div>
                     <div class="col-lg-9 col-12">
 
-                       <div class="d-flex justify-content-between align-items-center">
+                       <div class="d-flex justify-content-between align-items-center bg-light" style="position: sticky; top:0px; padding-top: 10px; z-index: 2;">
                             <section class="w-100">
                                 <h2 class="p-0 m-0">Lista de materiales</h2>
                             </section>
@@ -52,6 +54,11 @@
                        <hr>
 
                         <x-home.books :documents="$documents"></x-home.books>
+                        <!-- Mostrar la paginación -->
+                        <div class="d-flex justify-content-center">
+                            {{ $documents->links() }}
+                        </div>
+
                     </div>
                 </div>
             </section>

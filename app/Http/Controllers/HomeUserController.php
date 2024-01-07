@@ -14,7 +14,7 @@ class HomeUserController extends Controller
 
     public function showBooks() {
         $categorys = Categorys::where('isPublished', true)->get();
-        $documents = Documents::where('isPublished', true)->get();
+        $documents = Documents::where('isPublished', true)->paginate(10);
         return view('books-page', ['categorys' => $categorys, 'documents' => $documents]);
     }
 
