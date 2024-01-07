@@ -70,8 +70,8 @@
                     @foreach ($documents as $document)
                         <tr>
                             <td><strong>{{ $document->id }}</strong></td>
-                            <td class="text-truncate text-break">{{ $document->title }}</td>
-                            <td class="text-truncate text-break" style="max-width: 130px;">{{ $document->description }}</td>
+                            <td class="text-truncate text-break" style="max-width: 230px;">{{ $document->title }}</td>
+                            <td class="text-truncate text-break" style="max-width: 150px;">{{ $document->description }}</td>
                             <td>
                                <section class="d-flex align-content-center justify-content-center">
                                 @if ($document->file)
